@@ -1,0 +1,19 @@
+/*!
+ * Author: Amir Hossein Jahani | iAmir.net
+ * Last modified: 5/12/20, 6:34 PM
+ * Copyright (c) 2021. Powered by iamir.net
+ */
+
+//
+// valueif
+//
+
+@function valueif($check, $trueValue, $falseValue: null) {
+    @if $check {
+        @return $trueValue;
+    } @else if $falseValue != null {
+        @return $falseValue;
+    } @else {
+        @return null;
+    }
+}

@@ -1,0 +1,12 @@
+/*!
+ * Author: Amir Hossein Jahani | iAmir.net
+ * Last modified: 4/4/20, 12:01 PM
+ * Copyright (c) 2021. Powered by iamir.net
+ */
+
+//==========================================
+//user select
+//==========================================
+.user-select-none {
+    @include user-select(none);
+}

@@ -1,0 +1,36 @@
+/*!
+ * Author: Amir Hossein Jahani | iAmir.net
+ * Last modified: 9/9/20, 8:40 AM
+ * Copyright (c) 2021. Powered by iamir.net
+ */
+
+textarea:active,
+input:active,
+textarea:focus,
+input:focus,
+{
+    border-width: 1px !important;
+    border-color: $color-primary !important;
+}
+
+.input-group .input-group-text i.cursor-pointer:hover {
+    color: $color-primary;
+}
+
+textarea:hover,
+input:not([type="checkbox"]):hover,
+textarea:active,
+input:not([type="checkbox"]):active,
+textarea:focus,
+input:not([type="checkbox"]):focus,
+button:focus,
+button:active,
+button:hover,
+label:focus,
+.btn:active,
+.btn.active
+{
+    outline:0 !important;
+    -webkit-appearance:none;
+    box-shadow: none !important;
+}

@@ -1,0 +1,45 @@
+/*!
+ * Author: Amir Hossein Jahani | iAmir.net
+ * Last modified: 9/9/20, 5:30 PM
+ * Copyright (c) 2021. Powered by iamir.net
+ */
+
+@each $name, $height in $heights {
+    .h-#{$name} {
+        height: $height !important;
+    }
+}
+
+$heights: map-merge($default-widths-heights, $heights);
+
+@include media-breakpoint-down(sm)  {
+    @each $name, $height in $heights {
+        .h-sm-#{$name} {
+            height: $height !important;
+        }
+    }
+}
+
+@include media-breakpoint-up(sm)  {
+    @each $name, $height in $heights {
+        .h-md-#{$name} {
+            height: $height !important;
+        }
+    }
+}
+
+@include media-breakpoint-up(lg)  {
+    @each $name, $height in $heights {
+        .h-lg-#{$name} {
+            height: $height !important;
+        }
+    }
+}
+
+@include media-breakpoint-up(xl) {
+    @each $name, $height in $heights {
+        .h-xl-#{$name} {
+            height: $height !important;
+        }
+    }
+}
