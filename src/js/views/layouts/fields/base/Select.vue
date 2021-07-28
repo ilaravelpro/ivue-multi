@@ -5,21 +5,21 @@
   -->
 
 <template>
-    <div ref="select" class="i-select" :class="styleForField">
-        <div class="select-title cursor-pointer text-no-wrap w-75" @click="onShow">
+    <div ref="select" class="i-select" :class="classForField">
+        <div :class="getHtmlClass('select.header')" @click="onShow">
             {{ getSelects }}
         </div>
-        <ul class="select-items p-0" ref="items">
-            <li v-if="search" class="select-search px-3">
-                <input ref="search" type="text" placeholder="Search..." class="form-control" @keyup="filtering($event)" v-model="searchText">
+        <ul :class="getHtmlClass('select.items.self')" ref="items">
+            <li v-if="search" :class="getHtmlClass('select.items.search.self')">
+                <input ref="search" type="text" placeholder="Search..." :class="getHtmlClass('select.items.search.input')" @keyup="filtering($event)" v-model="searchText">
             </li>
-            <li v-if="actions" class="select-actions px-3">
-                <div class="btn-group btn-group-sm btn-block">
-                    <button v-if="multiple" @click="selectAll" type="button" class="actions-btn bs-select-all btn btn-light">Select All</button>
-                    <button type="button" @click="deSelect" class="actions-btn bs-deselect-all btn btn-light">Deselect{{ multiple ? ' All' : ''}}</button>
+            <li v-if="actions" :class="getHtmlClass('select.items.actions.self')">
+                <div :class="getHtmlClass('select.items.actions.group')">
+                    <button v-if="multiple" @click="selectAll" type="button" :class="getHtmlClass('select.items.actions.selectAll')">Select All</button>
+                    <button type="button" @click="deSelect" :class="getHtmlClass('select.items.actions.deSelectAll')">Deselect{{ multiple ? ' All' : ''}}</button>
                 </div>
             </li>
-            <li class="select-item" v-for="(item, index) in itemsByFiltered" :data-key="index" :data-value="item.value"
+            <li :class="getHtmlClass('select.item')" v-for="(item, index) in itemsByFiltered" :data-key="index" :data-value="item.value"
                 @click="onSelect(item, index, $event)" v-html="viewItem(item, index, itemsByFiltered)">
             </li>
         </ul>
@@ -33,6 +33,10 @@
     import LoadSingleData from "../../../../handel/functions/store/loadSingle.func";
     export default {
         name: 'i-base-select',
+        index: {
+            group: 'fields',
+            html: 'select',
+        },
         model: {
             event: 'change'
         },

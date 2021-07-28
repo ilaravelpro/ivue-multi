@@ -5,15 +5,15 @@
   -->
 
 <template>
-    <div ref="select" class="i-autocomplete" :class="styleForField">
-        <div class="select-title select-search cursor-pointer">
-            <div class="input-group">
-                <input ref="search" type="text" :placeholder="placeholder" class="form-control border-0 m-0 p-0 h-auto" :class="{'text-primary font-weight-bold': searchText === selectText}"
+    <div ref="select" class="i-autocomplete" :class="classForField">
+        <div :class="getHtmlClass('select.header.self')">
+            <div :class="getHtmlClass('select.header.group')">
+                <input ref="search" type="text" :placeholder="placeholder" :class="classForHeaderSearch"
                        @keyup="filtering($event)" v-model="searchText" @focusin="focusin" @focusout="focusoutInternal">
             </div>
         </div>
-        <ul class="select-items w-sm-250px p-0">
-            <li class="select-item" v-for="(item, index) in itemsByFiltered" :data-key="index"
+        <ul :class="getHtmlClass('select.items')">
+            <li :class="getHtmlClass('select.item')" v-for="(item, index) in itemsByFiltered" :data-key="index"
                 :data-value="item.value"
                 @click="onSelect(item, index, $event)" v-html="viewItem(item, index, itemsByFiltered)">
             </li>
@@ -32,6 +32,10 @@
 
     export default {
         name: 'i-base-autocomplete',
+        index: {
+            group: 'fields',
+            html: 'autocomplete',
+        },
         model: {
             event: 'change'
         },
@@ -111,7 +115,6 @@
         },
         created() {
             LoadSingleData.setValueOnCreate(this)
-            /*if (this.url)this.moreLoad()*/
         },
         computed: {
             ...GlobalField.computed(storeNamespace),

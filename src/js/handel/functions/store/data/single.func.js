@@ -45,6 +45,10 @@ const StoreDataSingle = {
             },
             desc: {},
             styles: {},
+            html: {
+                styles: {},
+                classes: {},
+            },
             errors: {
                 user: {},
                 system: {errors: {}},
@@ -72,6 +76,8 @@ const StoreDataSingle = {
         iLoading: state => state.loading,
         iFields: state => state.fields,
         iStyleAll: state => state.styles,
+        iHtmlStyleAll: state => state.html.styles,
+        iHtmlClassAll: state => state.html.classes,
         iTimeout: state => state.timeout,
         iFetched: state => state.fetched,
     },

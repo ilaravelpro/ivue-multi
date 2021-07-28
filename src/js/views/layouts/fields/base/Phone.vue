@@ -5,10 +5,10 @@
   -->
 
 <template>
-    <div class="d-flex flex-wrap input-group p-0 dir-ltr" :class="getStyle('input-group')">
-        <i-base-autocomplete class="col-3" placeholder="+1" :items="countries" v-model="model.country" :release="(country, index) => {return {text: `+${country.code}`, value: country.code}}" :options="getOptions"/>
-        <i-base-input v-if="prefix" class="col-3" v-model="model.prefix" :options="getOptions"/>
-        <i-base-input :class="{'col-6': prefix, 'col-9': !prefix}" v-model="model.number" :options="getOptions"/>
+    <div :class="getClassHtml('input-group')">
+        <i-base-autocomplete :class="getClassHtml('groups.country')" placeholder="+1" :items="countries" v-model="model.country" :release="(country, index) => {return {text: `+${country.code}`, value: country.code}}" :options="getOptions"/>
+        <i-base-input v-if="prefix" :class="getClassHtml('groups.prefix')" v-model="model.prefix" :options="getOptions"/>
+        <i-base-input :class="getClassHtml('groups.' + (prefix ? 'number' : 'numberIf'))" v-model="model.number" :options="getOptions"/>
     </div>
 </template>
 
@@ -20,6 +20,10 @@
 
     export default {
         name: 'i-base-phone',
+        index: {
+            group: 'fields',
+            html: 'phone',
+        },
         model: {
             event: 'change'
         },

@@ -10,7 +10,7 @@ const state = {
 };
 
 const getters = {
-    iConfigHtml: state => state.errors,
+    iConfigHtml: state => state.config,
 };
 
 const actions = {

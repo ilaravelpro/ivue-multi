@@ -6,10 +6,10 @@
 
 <template>
     <textarea v-if="type === 'textarea'" ref="input" :placeholder="placeholder" v-model="model"
-              :class="styleForTextArea" @focusin="focusin"
+              :class="classForTextArea" @focusin="focusin"
               @focusout="focusout" :id="getIndex('datepicker') ? getIndex('datepicker') + '_input' : ''"></textarea>
     <input v-else ref="input" v-mask="getMask" :readonly="getOption('readonly')" :type="type" :placeholder="placeholder"
-           :value="model" :class="styleForField"
+           :value="model" :class="classForField"
            @focusin="focusin" @focusout="focusout" :id="getIndex('datepicker') ? getIndex('datepicker') + '_input' : false">
 </template>
 
@@ -20,6 +20,10 @@
 
     export default {
         name: 'i-base-input',
+        index: {
+            group: 'fields',
+            html: 'input',
+        },
         model: {
             event: 'change'
         },
@@ -114,8 +118,8 @@
         },
         computed: {
             ...GlobalField.computed(),
-            styleForTextArea() {
-                return this.styleForField + (this.resize ? ' resize-none' : '');
+            classForTextArea() {
+                return this.classForField + (this.resize ? ' resize-none' : '');
             }
         },
         methods: {

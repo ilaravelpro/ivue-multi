@@ -18,6 +18,10 @@
 
     export default {
         name: 'i-base-input',
+        index: {
+            group: 'fields',
+            html: 'input',
+        },
         model: {
             event: 'change'
         },
@@ -58,7 +62,7 @@
         computed: {
             ...GlobalField.computed(storeNamespace),
             styleForTextArea() {
-                return this.styleForField + (this.resize ? 'resize-none' : '');
+                return this.classForField + (this.resize ? 'resize-none' : '');
             }
         },
         methods: {

@@ -4,6 +4,8 @@
  * Copyright (c) 2021. Powered by iamir.net
  */
 
+import FuncUtilsHtml from "../utils/html.func";
+
 const LoadSingleData = {
     setValueOnCreate($this) {
         if (!($this.getIndex('update') &&
@@ -23,6 +25,7 @@ const LoadSingleData = {
     },
     computed() {
         return {
+            ...FuncUtilsHtml.computed(),
             iRecord() {
                 return this.$store ? this.$store.getters[this.storeNamespace + '/' + 'iRecord'] : {}
             },
@@ -59,9 +62,6 @@ const LoadSingleData = {
             iLoading() {
                 return this.$store.getters[this.storeNamespace + '/' + 'iLoading']
             },
-            iConfigHtml() {
-                return this.$store.getters['ConfigHtml' + '/' + 'iConfigHtml']
-            },
             _value() {
                 return this.model || this.value || null;
             },
@@ -86,11 +86,12 @@ const LoadSingleData = {
     },
     methods() {
         return {
-            getIndex(key = 'store') {
+            ...FuncUtilsHtml.methods(),
+            getIndex(key = 'store', $store = true) {
                 if (typeof (this.getFieldIndex) === 'object'){
-                    return iPath.get(this.getFieldIndex, key) || iPath.get(this.getFieldIndex, 'store');
+                    return iPath.get(this.getFieldIndex, key) || ($store ? iPath.get(this.getFieldIndex, 'store') : undefined);
                 }
-                return this.getFieldIndex;
+                return $store ? this.getFieldIndex : undefined;
             },
             getOption(key, $default = null) {
                 var $ioption = iPath.get(this.iOptionAll, this.getIndex('option'));
@@ -104,9 +105,6 @@ const LoadSingleData = {
                 $istyles = iPath.get($istyles, key);
                 var $style = iPath.get(this.css, key);
                 return $style || $istyles || $default;
-            },
-            getConfigHtml(key, $default = null) {
-                return iPath.get(this.iConfigHtml, key , $default);
             },
             getValue(key, $default = null) {
                 return iPath.get(this.iRecord, key , $default);
@@ -177,6 +175,7 @@ const LoadSingleData = {
     },
     watch() {
         return {
+            ...FuncUtilsHtml.watch(),
             iRecordValue: {
                 handler: function (newValue, oldValue) {
                     if (this.fieldIndex && this.getIndex('get') && this.getOption('store.get', true) && typeof(newValue) !== "undefined" && !_.isEqual(newValue, oldValue)) {

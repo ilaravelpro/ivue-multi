@@ -5,7 +5,7 @@
   -->
 
 <template>
-    <label class="switch" :class="styleForField">
+    <label class="switch" :class="classForField">
         <input type="checkbox" :checked="getCheck" :class="{'checked': getCheck}" @click="changeValue()">
         <span class="slider" :class="styleForSlider"></span>
     </label>
@@ -18,6 +18,10 @@
 
     export default {
         name: 'i-base-switch',
+        index: {
+            group: 'fields',
+            html: 'switch',
+        },
         model: {
             event: 'change'
         },
@@ -51,7 +55,7 @@
         computed: {
             ...GlobalField.computed(),
             ...CheckboxField.computed,
-            styleForField() {
+            classForField() {
                 var $style = '';
                 if (this.getOption('field.control_field')) $style += 'form-control text-left ';
                 if (this._icon && this._icon.prepend) $style += 'border-left-0 border-right-radius-4px ';

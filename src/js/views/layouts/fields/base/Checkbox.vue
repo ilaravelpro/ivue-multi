@@ -18,6 +18,10 @@
 
     export default {
         name: 'i-base-checkbox',
+        index: {
+            group: 'fields',
+            html: 'checkbox',
+        },
         model: {
             event: 'change'
         },

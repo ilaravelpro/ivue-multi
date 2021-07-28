@@ -54,7 +54,7 @@
                 return this.getStyle('label') ? this.getStyle('label') : '';
             },
             styleForCheckmark() {
-                return this.styleForField + " " + this.getOption('color', 'color-primary');
+                return this.classForField + " " + this.getOption('color', 'color-primary');
             },
         },
         methods: {

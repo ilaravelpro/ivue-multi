@@ -29,6 +29,10 @@
 
     export default {
         name: 'i-autocomplete',
+        index: {
+            group: 'fields',
+            html: 'autocomplete',
+        },
         model: {
             event: 'change'
         },

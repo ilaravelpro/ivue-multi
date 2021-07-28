@@ -6,23 +6,15 @@
 
 const BaseField = {
     computed: {
-        styleForSection() {
+        classForSection() {
             var $style = '';
-            if (this.getOption('field.control')) $style += ' form-control';
-            if (this.getOption('field.row')) $style += ' row';
             if (this.getOption('field.validate')|| this.statusError === 'invalid') $style += ' validated';
-            if (this.getOption('field.relative')) $style += ' position-relative';
-            if (this.getStyle('section')) $style += ' ' + this.getStyle('section');
+            if (this.getHtmlClass('section')) $style += ' ' + this.getHtmlClass('section');
             return $style;
         },
-        styleForLabel() {
-            var $style = 'text-left col-form-label ';
-            $style += this.getStyle('label') ? this.getStyle('label') : 'my-auto';
-            return $style;
-        },
-        styleForGroup() {
-            var $style = this.getStyle('group') ? this.getStyle('group') : 'my-auto';
-            $style += this.label ? '' : ' p-0 my-2';
+        classForGroup() {
+            var $style = this.getHtmlClass('group', 'my-auto');
+            $style += this.label ? '' : (' ' + this.getHtmlClass('noLabel', 'my-auto'));
             return $style;
         },
         statusError() {
@@ -31,17 +23,19 @@ const BaseField = {
     },
     methods: {
         focusin() {
+            var $this = this;
             $.each([this.$refs.icon_prepend, this.$refs.icon_append], function (i, v) {
-                if (!$(v).hasClass('border-color-primary'))
-                    $(v).addClass('border-color-primary');
-                if (!$(v).hasClass('color-primary') && !$(v).find('i').hasClass('cursor-pointer'))
-                    $(v).addClass('color-primary');
+                if (!$(v).hasClass($this.getHtmlClass('border-color-primary', 'border-color-primary')))
+                    $(v).addClass($this.getHtmlClass('border-color-primary', 'border-color-primary'));
+                if (!$(v).hasClass($this.getHtmlClass('color-primary', 'color-primary')) && !$(v).find('i').hasClass('cursor-pointer'))
+                    $(v).addClass($this.getHtmlClass('color-primary', 'color-primary'));
             })
         },
         focusout() {
+            var $this = this;
             $.each([this.$refs.icon_prepend, this.$refs.icon_append], function (i, v) {
-                $(v).removeClass('border-color-primary');
-                $(v).removeClass('color-primary');
+                $(v).removeClass($this.getHtmlClass('border-color-primary', 'border-color-primary'));
+                $(v).removeClass($this.getHtmlClass('color-primary', 'color-primary'));
             })
         }
     }

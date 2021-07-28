@@ -5,7 +5,7 @@
   -->
 
 <template>
-    <div ref="select" class="i-select" :class="styleForField">
+    <div ref="select" class="i-select" :class="classForField">
         <div class="select-title cursor-pointer text-no-wrap w-90" @click="onShow">
             {{ getSelects }}
         </div>
@@ -35,6 +35,10 @@
     import VSelectize from '@isneezy/vue-selectize'
     export default {
         name: 'i-base-selectize',
+        index: {
+            group: 'fields',
+            html: 'selectize',
+        },
         model: {
             event: 'change'
         },

@@ -17,6 +17,10 @@
 
     export default {
         name: 'i-base-tag',
+        index: {
+            group: 'fields',
+            html: 'tag',
+        },
         props: {
             placeholder: String,
             id: String,

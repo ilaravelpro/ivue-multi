@@ -5,6 +5,14 @@
  */
 
 const AutoCompleteField = {
+    computed: {
+        classForHeaderSearch: function () {
+            var classes = this.getHtmlClass('select.header.search');
+            if (this.searchText === this.selectText)
+                classes += this.getHtmlClass('select.header.searchIf');
+            return classes;
+        }
+    },
     methods: {
         onSelect(item, index) {
             this._onSelect(item, index)
