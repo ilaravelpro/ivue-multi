@@ -15,25 +15,25 @@
         </label>
         <div :class="classForGroup">
             <slot v-if="$scopedSlots['input-group']" name="input-group"></slot>
-            <div v-else :class="getHtmlClass('input-group', 'input-group')">
-                <template :class="getHtmlClass('input-group-prepend', 'input-group-prepend')">
+            <div v-else :class="getHtmlClass('input-group')">
+                <template :class="getHtmlClass('input-group-prepend')">
                     <component v-if="getSlots('prepend')" :is="getSlots('prepend')" :store-namespace="storeNamespace"></component>
                     <slot v-else name="prepend"></slot>
                 </template>
-                <span v-if="_icon && _icon.prepend" @click="_icon.prepend.action ? _icon.prepend.action(getContext) : ()=> []" slot="prepend" ref="icon_prepend" :class="getHtmlClass('input-group-prepend-icon', 'input-group-text bg-white border-right-0')">
+                <span v-if="_icon && _icon.prepend" @click="_icon.prepend.action ? _icon.prepend.action(getContext) : ()=> []" slot="prepend" ref="icon_prepend" :class="getHtmlClass('input-group-prepend-icon')">
                     <i :class="_icon.prepend.class" aria-hidden="true"></i>
                 </span>
                 <component v-if="getSlots('body')" :is="getSlots('body')"></component>
                 <slot v-else name="body"></slot>
-                <span v-if="_icon && _icon.append" @click="_icon.append.action ? _icon.append.action(getContext) : ()=> []" slot="append" ref="icon_append" :class="getHtmlClass('input-group-append-icon', 'input-group-text bg-white border-left-0')">
+                <span v-if="_icon && _icon.append" @click="_icon.append.action ? _icon.append.action(getContext) : ()=> []" slot="append" ref="icon_append" :class="getHtmlClass('input-group-append-icon')">
                     <i :class="_icon.append.class" aria-hidden="true"></i>
                 </span>
-                <template :class="getHtmlClass('input-group-append', 'input-group-append')" >
+                <template :class="getHtmlClass('input-group-append')" >
                     <component v-if="getSlots('append')" :is="getSlots('append')" :store-namespace="storeNamespace"></component>
                     <slot v-else name="append"></slot>
                 </template>
             </div>
-            <span v-if="getDesc && getDesc.length > 0" :class="getHtmlClass('input-group-desc', 'form-text text-muted')">{{ getDesc }}</span>
+            <span v-if="getDesc && getDesc.length > 0" :class="getHtmlClass('input-group-desc')">{{ getDesc }}</span>
         </div>
     </div>
 </template>

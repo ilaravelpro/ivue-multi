@@ -40,14 +40,14 @@ const FuncUtilsHtml = {
                 var $iclasses = iPath.get(this.iHtmlClassAll, this.getIndex('class')) || iPath.get(this.iHtmlClassAll, 'global');
                 $iclasses = iPath.get($iclasses, key, '');
                 var $cclasses = iPath.get(this.css, key, '');
-                $iclasses = ($classesVariable || $iclasses || $cclasses || $default);
+                $iclasses = ($cclasses || $iclasses || $classesVariable || $default);
                 var $classes = $classesDefault;
                 if ($iclasses instanceof Object) {
                     $.each($iclasses, function (i, v) {
-                        if (v) $classes += i;
+                        if (v) $classes += ' ' + i;
                     })
                 }else
-                    $classes += $iclasses;
+                    $classes += ' ' + $iclasses;
                 return $classes;
             },
             getHtmlBaseStyle(key, $default = {}) {

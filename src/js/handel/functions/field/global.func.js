@@ -15,12 +15,12 @@ const GlobalField = {
             },
             classForField() {
                 var $style = '';
-                if (this._icon && this._icon.prepend) $style += ' ' + this.getHtmlClass('input-group-prepend-input', 'border-left-0 border-right-radius-4px');
-                if (this._icon && this._icon.append) $style += ' ' + this.getHtmlClass('input-group-append-input', 'border-right-0 border-left-radius-4px');
+                if (this._icon && this._icon.prepend) $style += ' ' + this.getHtmlClass('input-group-prepend-input');
+                if (this._icon && this._icon.append) $style += ' ' + this.getHtmlClass('input-group-append-input');
                 if (this.error && typeof (this.error.status) !== 'undefined') $style += ' is-' + this.error.status;
                 if (this.getHtmlClass('field')) $style += ' ' + this.getHtmlClass('field');
                 if (this.getOption('readonly')) $style += ' readonly';
-                return $style;
+                return $style.trim();
             },
         }
     },

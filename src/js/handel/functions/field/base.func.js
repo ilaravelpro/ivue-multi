@@ -10,12 +10,12 @@ const BaseField = {
             var $style = '';
             if (this.getOption('field.validate')|| this.statusError === 'invalid') $style += ' validated';
             if (this.getHtmlClass('section')) $style += ' ' + this.getHtmlClass('section');
-            return $style;
+            return $style.trim();
         },
         classForGroup() {
             var $style = this.getHtmlClass('group', 'my-auto');
             $style += this.label ? '' : (' ' + this.getHtmlClass('noLabel', 'my-auto'));
-            return $style;
+            return $style.trim();
         },
         statusError() {
             return this.getError((this.getIndex('error') || this.getIndex('store')) + '.status') || null;
