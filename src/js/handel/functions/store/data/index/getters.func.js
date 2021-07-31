@@ -12,6 +12,8 @@ const StoreDataIndexGetters = {
     iFilterAll:     state => typeof(state.meta.filters) !== "undefined" ? state.meta.filters.allowed : [],
     iOperatorAll:   state => typeof(state.meta.filters) !== "undefined" ? state.meta.filters.operators : [],
     iLoading:       state => state.loading,
+    iHtmlStyleAll: state => state.html.styles,
+    iHtmlClassAll: state => state.html.classes,
 };
 
 export default StoreDataIndexGetters;

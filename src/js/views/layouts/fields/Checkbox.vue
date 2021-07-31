@@ -29,6 +29,10 @@
 <script>
     export default {
         name: 'i-checkbox',
+        index: {
+            group: 'fields',
+            html: 'checkbox',
+        },
         model: {
             event: 'change'
         },

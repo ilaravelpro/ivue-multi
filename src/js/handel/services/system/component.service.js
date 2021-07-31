@@ -34,13 +34,13 @@ Vue.component('i-input', require('../../../views/layouts/fields/Input').default)
 Vue.component('i-text-area', require('../../../views/layouts/fields/TextArea').default);
 Vue.component('i-file', require('../../../views/layouts/fields/File').default);
 Vue.component('i-checkbox', require('../../../views/layouts/fields/Checkbox').default);
-Vue.component('i-radio', require('../../../views/layouts/fields/Radio').default);
+Vue.component('i-radio-multi', require('../../../views/layouts/fields/RadioMulti').default);
 Vue.component('i-select', require('../../../views/layouts/fields/Select').default);
 Vue.component('i-autocomplete', require('../../../views/layouts/fields/AutoComplete').default);
 Vue.component('i-phone', require('../../../views/layouts/fields/Phone').default);
 Vue.component('i-switch', require('../../../views/layouts/fields/Switch').default);
 Vue.component('i-checkbox', require('../../../views/layouts/fields/Checkbox').default);
-Vue.component('i-label-checkbox', require('../../../views/layouts/fields/LabelCheckbox').default);
-Vue.component('i-multi-checkbox', require('../../../views/layouts/fields/MultiCheckbox').default);
+Vue.component('i-checkbox-label', require('../../../views/layouts/fields/CheckboxLabel').default);
+Vue.component('i-checkbox-multi', require('../../../views/layouts/fields/CheckboxMulti').default);
 
 Vue.component('i-table', require('../../../views/layouts/fields/Table').default);

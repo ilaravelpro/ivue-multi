@@ -7,17 +7,17 @@
 <template>
     <div>
         <div v-for="(item, index) in filteredAndSorted" :key="index">
-            <label class="i-radio text-no-wrap">
-                <span class="title">{{ item.title }}</span>
+            <label :class="getHtmlClass('radio.self')">
+                <span :class="getHtmlClass('radio.title')">{{ item.title }}</span>
                 <input type="radio" @change="checking(item)"
                        :checked="checked(item)" :value="item.id">
-                <span class="checkmark trh-icon color-blue"></span>
+                <span :class="getHtmlClass('radio.checkmark')"></span>
             </label>
-            <label v-for="(child, cindex) in item.children" class="i-radio text-no-wrap ml-3">
-                <span class="title">{{ child.title }}</span>
+            <label v-for="(child, cindex) in item.children" :class="getHtmlClass('radio.child.self')">
+                <span :class="getHtmlClass('radio.child.title')">{{ child.title }}</span>
                 <input type="radio" @change="checking(child)" :checked="checked(child)"
                        :value="child.id">
-                <span class="checkmark trh-icon color-blue"></span>
+                <span :class="getHtmlClass('radio.child.checkmark')"></span>
             </label>
         </div>
     </div>
@@ -26,7 +26,11 @@
 
 <script>
     export default {
-        name: 'i-radio',
+        name: 'i-radio-multi',
+        index: {
+            group: 'fields',
+            html: 'radio-multi',
+        },
         props: {
             items: [Object, Array],
             selected: [Object, Array, String, Number],
@@ -43,7 +47,6 @@
                     if (a.name > b.name) return 1;
                     return 0;
                 }
-
                 return this.items.filter(item => {
                     var $has = item[this.search_attr].toLowerCase().includes(this.search.toLowerCase());
                     if (!$has && item.children && Object.keys(item.children).length > 0) {

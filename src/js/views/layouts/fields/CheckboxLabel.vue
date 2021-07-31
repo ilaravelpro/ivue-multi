@@ -6,9 +6,9 @@
 
 <template>
     <label
-        class="i-checkbox mb-0" :class="styleForLabel" data-toggle="tooltip" data-placement="top" :title="label">
+        :class="getHtmlClass('label')" data-toggle="tooltip" data-placement="top" :title="label">
         <i-base-checkbox v-bind="$props" @change="$emit('change', $event )"></i-base-checkbox>
-        <span class="checkmark fa" :class="styleForCheckmark"></span>
+        <span :class="classForCheckmark"></span>
     </label>
 </template>
 
@@ -18,7 +18,11 @@
     import GlobalField from "../../../handel/functions/field/global.func";
 
     export default {
-        name: 'i-label-checkbox',
+        name: 'i-checkbox-label',
+        index: {
+            group: 'fields',
+            html: 'checkbox-label',
+        },
         model: {
             event: 'change'
         },
@@ -50,10 +54,7 @@
         },
         computed: {
             ...GlobalField.computed(),
-            styleForLabel() {
-                return this.getStyle('label') ? this.getStyle('label') : '';
-            },
-            styleForCheckmark() {
+            classForCheckmark() {
                 return this.classForField + " " + this.getOption('color', 'color-primary');
             },
         },

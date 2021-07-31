@@ -32,7 +32,12 @@
         </div>
 
         <div v-if="status && iStatuses && iStatuses instanceof Array && iStatuses.length > 1" class="d-flex flex-wrap mt-2" :class="{'mx-0 p-0 mb-2': child, 'mx-2 mx-lg-4' : !child }">
-            <button v-for="(status, index) in iStatuses" class="btn px-6 font-weight-bold" :class="{'mx-2' : (!child ? true : index),'bg-green color-white':filterStatus === status.value, 'bg-white color-primary': !child && filterStatus !== status.value, 'bg-primary color-white': child && filterStatus !== status.value }" @click="changeStatus(status.value)">{{ status.text.charAt(0).toUpperCase() + status.text.slice(1) }}</button>
+            <button v-for="(status, index) in iStatuses" class="btn btn-icon btn-light btn-sm" :class="{'mx-2' : (!child ? true : index),
+            'bg-green color-white':filterStatus === status.value,
+             'bg-white color-primary': !child && filterStatus !== status.value,
+              'bg-primary color-white': child && filterStatus !== status.value }" @click="changeStatus(status.value)">
+                {{ status.text.charAt(0).toUpperCase() + status.text.slice(1) }}
+            </button>
         </div>
 
         <div class="container-table" :class="{'p-0': child}">
@@ -85,7 +90,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 </template>
 
@@ -95,6 +99,10 @@
 
     export default {
         name: "i-datatable-list",
+        index: {
+            group: 'datatable',
+            html: 'list',
+        },
         components: {IDatatablePagination},
         props: {
             id: String,

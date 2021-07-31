@@ -29,6 +29,10 @@
 <script>
     export default {
         name: 'i-switch',
+        index: {
+            group: 'fields',
+            html: 'switch',
+        },
         model: {
             event: 'change'
         },

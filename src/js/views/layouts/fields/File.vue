@@ -33,6 +33,10 @@
 <script>
     export default {
         name: 'i-file',
+        index: {
+            group: 'fields',
+            html: 'file',
+        },
         model: {
             event: 'change'
         },

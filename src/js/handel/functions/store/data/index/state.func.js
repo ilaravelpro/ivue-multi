@@ -13,6 +13,10 @@ const StoreDataIndexState = () => {
         query: {},
         configs: {},
         statuses: {},
+        html: {
+            styles: {},
+            classes: {},
+        },
         loading: false,
     }
 };

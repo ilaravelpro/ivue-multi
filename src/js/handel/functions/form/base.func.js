@@ -4,13 +4,21 @@
  * Copyright (c) 2021. Powered by iamir.net
  */
 
-const BaseForm = {
+const FormBase = {
+    computed: {
+        getItems() {
+            return this.fields(this.name);
+        },
+    },
     methods: {
         fields(name = null) {
             var items = this.items ||  this.$store.getters[this.storeNamespace + '/iFields'];
             return name ? items[name] : items;
+        },
+        setState(key, value) {
+            this.$store.commit(this.storeNamespace + '/setState', {key: key, value: value})
         }
     }
 };
 
-export default BaseForm;
+export default FormBase;

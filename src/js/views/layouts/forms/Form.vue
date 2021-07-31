@@ -9,10 +9,15 @@
 </template>
 
 <script>
-    import BaseFrom from "../../../handel/functions/form/base.func";
-    import GlobalField from "../../../handel/functions/field/global.func";
+    import FormBase from "../../../handel/functions/form/base.func";
+    import FormGlobal from "../../../handel/functions/form/global.func";
+
     export default {
         name: "i-form",
+        index: {
+            group: 'forms',
+            html: 'self',
+        },
         props: {
             items: [Object, Array],
             resource: String,
@@ -26,9 +31,8 @@
             }
         },
         computed: {
-            getItems() {
-                return this.fields(this.name);
-            },
+            ...FormGlobal.computed(),
+            ...FormBase.computed,
         },
         created() {
             if (this.resource)this.setState('resource', this.resource)
@@ -36,10 +40,8 @@
             if (this.typeForm)this.setState('options.typeForm', this.typeForm)
         },
         methods: {
-            ...BaseFrom.methods,
-            setState(key, value) {
-                this.$store.commit(this.storeNamespace + '/setState', {key: key, value: value})
-            }
+            ...FormGlobal.methods(),
+            ...FormBase.methods
         },
     }
 </script>

@@ -27,6 +27,10 @@
 
     export default {
         name: 'i-select',
+        index: {
+            group: 'fields',
+            html: 'select',
+        },
         model: {
             event: 'change'
         },

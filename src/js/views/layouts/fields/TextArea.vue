@@ -30,7 +30,11 @@
 
 <script>
     export default {
-        name: 'i-input',
+        name: 'i-text-area',
+        index: {
+            group: 'fields',
+            html: 'text-area',
+        },
         model: {
             event: 'change'
         },

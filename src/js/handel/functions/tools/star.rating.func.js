@@ -4,7 +4,7 @@
  * Copyright (c) 2021. Powered by iamir.net
  */
 
-const StarRating = {
+const ToolsStarRating = {
     methods: {
         setAllClass(star = null) {
             var $this = this;
@@ -37,4 +37,4 @@ const StarRating = {
     }
 };
 
-export default StarRating;
+export default ToolsStarRating;

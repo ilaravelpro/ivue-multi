@@ -32,6 +32,10 @@
 <script>
     export default {
         name: 'i-tag',
+        index: {
+            group: 'fields',
+            html: 'tag',
+        },
         model: {
             event: 'change'
         },

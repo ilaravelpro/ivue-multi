@@ -5,7 +5,7 @@
   -->
 
 <template>
-    <div class="i-repeater">
+    <div :class="getHtmlClass('main')">
         <i-base
             :label="title"
             :store-namespace="storeNamespace"
@@ -19,18 +19,18 @@
             <slot slot="prepend" name="prepend"/>
             <slot slot="append" name="append"/>
             <template slot="input-group">
-                <div v-if="type !== 'single' && model && model.length > 0" class="d-flex flex-wrap my-2 hidden-mobile">
+                <div v-if="type !== 'single' && model && model.length > 0" :class="getHtmlClass('group.head.self')">
                     <template v-if="typeof(body) === 'function'">
                         <template v-for="comp in body({}, -1, getContext)">
                             <div v-if="comp.component === 'i-form-fields'" :class="comp.attrs.class">
-                                <div v-for="child in comp.attrs.items" :class="child.attrs.class" class="px-0">{{ child.attrs.placeholder }}</div>
+                                <div v-for="child in comp.attrs.items" :class="String(getHtmlClass('group.head.child') + (child.attrs.class ? ' ' + child.attrs.class : '')).trim()">{{ child.attrs.placeholder }}</div>
                             </div>
-                            <div v-else :class="comp.attrs.class" class="px-0">{{ comp.attrs.placeholder }}</div>
+                            <div v-else :class="String(getHtmlClass('group.head.child') + (comp.attrs.class ? ' ' + comp.attrs.class : '')).trim()">{{ comp.attrs.placeholder }}</div>
                         </template>
                     </template>
                 </div>
                 <template v-for="(item, index) in model">
-                    <div class="d-flex flex-wrap my-2">
+                    <div :class="getHtmlClass('group.body.self')">
                         <template v-if="typeof(body) === 'function'">
                             <template v-for="comp in body(item, index, getContext)">
                                 <component :is="comp.component" v-bind="comp.attrs" :storeNamespace="storeNamespace"/>
@@ -39,8 +39,8 @@
                         <slot v-else name="body" v-bind:item="item" v-bind:index="index"></slot>
                         <div :class="removeClass">
                             <a @click="removeRow(index)"
-                               class="btn btn-sm font-weight-bolder btn-danger">
-                                <i class="fa fa-trash"></i>
+                               :class="getHtmlClass('group.body.del.self')">
+                                <i :class="getHtmlClass('group.body.del.icon')"></i>
                                 Delete
                             </a>
                         </div>
@@ -48,12 +48,12 @@
                 </template>
             </template>
         </i-base>
-        <div class="d-flex flex-wrap mt-2">
-            <label v-if="title" :class="styleForLabel"></label>
-            <div class="col-lg-4">
+        <div :class="getHtmlClass('add.self')">
+            <label v-if="title" :class="getHtmlClass('label')"></label>
+            <div :class="getHtmlClass('add.item')">
                 <a @click="addRow"
-                   class="btn btn-sm font-weight-bolder btn-primary">
-                    <i class="fa fa-plus"></i> Add
+                   :class="getHtmlClass('add.link')">
+                    <i :class="getHtmlClass('add.icon')"></i> Add
                 </a>
             </div>
         </div>
@@ -67,6 +67,10 @@
 
     export default {
         name: "i-repeater-base",
+        index: {
+            group: 'repeaters',
+            html: 'base',
+        },
         props: {
             title: {
                 type: String,

@@ -7,15 +7,15 @@
 <template>
     <div>
         <div v-for="(item, index) in filteredAndSorted" :key="index">
-            <label class="i-checkbox text-no-wrap">{{ item.text || item.title }}
+            <label :class="getHtmlClass('checkbox.self')">{{ item.text || item.title }}
                 <input type="checkbox" @change="checking(item,null ,item.kids)"
                        :checked="checked(item.value|| item.id)" :value="item.value|| item.id">
-                <span class="checkmark fa color-blue"></span>
+                <span :class="getHtmlClass('checkbox.mark')"></span>
             </label>
-            <label v-for="(child, cindex) in item.kids" class="i-checkbox text-no-wrap ml-3">{{ child.text || child.title }}
+            <label v-for="(child, cindex) in item.kids" :class="getHtmlClass('checkbox.child.self')">{{ child.text || child.title }}
                 <input type="checkbox" @change="checking(item, child ,item.kids)" :checked="checked(child.value|| child.id)"
                        :value="child.value|| child.id">
-                <span class="checkmark fa color-blue"></span>
+                <span :class="getHtmlClass('checkbox.child.mark')"></span>
             </label>
         </div>
     </div>
@@ -24,7 +24,11 @@
 
 <script>
     export default {
-        name: 'i-multi-checkbox',
+        name: 'i-checkbox-multi',
+        index: {
+            group: 'fields',
+            html: 'checkbox-multi',
+        },
         props: {
             items: [Object, Array],
             selected: [Object, Array],

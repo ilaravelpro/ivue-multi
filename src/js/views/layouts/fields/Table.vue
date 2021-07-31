@@ -5,44 +5,42 @@
   -->
 
 <template>
-    <div class="i-table my-2 overflow-hidden">
-        <h5 v-if="title" class="mb-1 col-12 p-1">{{ title }}</h5>
-        <button class="btn btn-warning" v-if="!viewTable" @click="viewTable = !viewTable">Load Table</button>
-        <div class="overflow-x-auto w-fit-content w-md-100" v-if="viewTable">
+    <div :class="getHtmlClass('table.self')">
+        <h5 v-if="title" :class="getHtmlClass('table.title')">{{ title }}</h5>
+        <button :class="getHtmlClass('table.btnLoad')" v-if="!viewTable" @click="viewTable = !viewTable">Load Table</button>
+        <div :class="getHtmlClass('table.contents.self')" v-if="viewTable">
             <component v-if="getSlots('columns')" :is="getSlots('columns')"
                        :store-namespace="storeNamespace"></component>
-            <div v-else class="d-flex">
-                <div :class="getStyle('row_table', 'col-2 col-lg-1')"></div>
-                <div v-if="getOption('fields.prepend')" class="p-0 pr-2 text-center" v-for="item in getOption('fields.prepend')"
-                     :class="item.style" v-text="item.title || item.attrs.placeholder"></div>
-                <div class="pr-4 text-center" :class="getStyle('column')" v-for="column in getColumns">{{ column ? column + ' '+
+            <div v-else :class="getHtmlClass('table.contents.header.self')">
+                <div :class="getHtmlClass('table.contents.header.right')"></div>
+                <div v-if="getOption('fields.prepend')" v-for="item in getOption('fields.prepend')"
+                     :class="handelClassTableItem(getHtmlClass('table.contents.header.prepend'), item)" v-text="item.title || item.attrs.placeholder"></div>
+                <div :class="handelClassTableItem(getHtmlClass('table.contents.header.main'), 'column')" v-for="column in getColumns">{{ column ? column + ' '+
                     String(getOption('unit.column')).toUpperCase() : '' }}
                 </div>
-                <div v-if="getOption('fields.append')" class="p-0 pr-2 text-center" v-for="item in getOption('fields.append')"
-                     :class="item.style" v-text="item.title || item.attrs.placeholder"></div>
+                <div v-if="getOption('fields.append')" v-for="item in getOption('fields.append')"
+                     :class="handelClassTableItem(getHtmlClass('table.contents.header.append'), item)" v-text="item.title || item.attrs.placeholder"></div>
             </div>
             <div class="d-flex" v-for="(row, index) in getRows">
-                <div class="my-auto" :class="getStyle('row_table', 'col-2 col-lg-1')">{{ row }} {{ getOption('unit.row') ? getOption('unit.row') :
+                <div class="my-auto" :class="getHtmlClass('table.contents.body.right')">{{ row }} {{ getOption('unit.row') ? getOption('unit.row') :
                     String(getOption('prefix.row')).toUpperCase() }}
                 </div>
-                <div v-if="getOption('fields.prepend')" v-for="item in getOption('fields.prepend')" class="p-0 pr-2"
-                     :class="item.style">
+                <div v-if="getOption('fields.prepend')" v-for="item in getOption('fields.prepend')" :class="handelClassTableItem(getHtmlClass('table.contents.body.prepend'), item)">
                     <component :is="item.component" v-bind="item.attrs"
                                :field-index="handelIndexAP(item, row, index)"
                                :store-namespace="storeNamespace"></component>
                 </div>
-                <div class="pr-4 mb-2" :class="getStyle('column')" v-for="(column, key) in getColumns">
-                    <div v-if="getOption('fields.columns')" class="form-group row mb-0">
-                        <div v-for="item in getOption('fields.columns')" :class="getStyle('item')">
+                <div :class="handelClassTableItem(getHtmlClass('table.contents.body.main.self'), 'column')" v-for="(column, key) in getColumns">
+                    <div v-if="getOption('fields.columns')" :class="getHtmlClass('table.contents.body.main.group')">
+                        <div v-for="item in getOption('fields.columns')" :class="getHtmlClass('item')">
                             <component :is="item.component" v-bind="item.attrs"
                                        :field-index="handelIndex(item, row, index, column, key)"
                                        :store-namespace="storeNamespace"></component>
-                            <div class="d-md-none mb-3"></div>
+                            <div :class="getHtmlClass('table.contents.body.main.space')"></div>
                         </div>
                     </div>
                 </div>
-                <div v-if="getOption('fields.append')" v-for="item in getOption('fields.append')" class="p-0 pr-2"
-                     :class="item.style">
+                <div v-if="getOption('fields.append')" v-for="item in getOption('fields.append')" :class="handelClassTableItem(getHtmlClass('table.contents.body.append'), item)">
                     <component :is="item.component" v-bind="item.attrs"
                                :field-index="handelIndexAP(item, row, index)"
                                :store-namespace="storeNamespace"></component>
@@ -58,6 +56,10 @@
 
     export default {
         name: 'i-table',
+        index: {
+            group: 'fields',
+            html: 'table',
+        },
         props: {
             title: String,
             slots: Object,
@@ -105,6 +107,16 @@
                 if (this.useIndex)
                     return this.fieldIndex + '.' + (this.getOption('prefix.column') ? this.getOption('prefix.row')+ index + '.' + item.name : item.name + '.' + this.getOption('prefix.row')+ index);
                 return this.fieldIndex + '.' + (this.getOption('unit.column') ? String(row).replace('.', '_') + '.' + item.name : item.name + '.' + String(row).replace('.', '_'));
+            },
+            handelClassTableItem($classes = '', item = '') {
+                var $iclasses = item instanceof String ? this.getHtmlClass(item) : item.classes
+                if ($iclasses instanceof Object) {
+                    $.each($iclasses, function (i, v) {
+                        if (v) $classes += ' ' + i;
+                    })
+                }else if($iclasses)
+                    $classes += ' ' + $iclasses;
+                return $classes
             }
         }
     }

@@ -33,6 +33,10 @@
 <script>
     export default {
         name: 'i-input',
+        index: {
+            group: 'fields',
+            html: 'input',
+        },
         model: {
             event: 'change'
         },

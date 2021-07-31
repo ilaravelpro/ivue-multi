@@ -5,8 +5,8 @@
   -->
 
 <template>
-    <div :class="style">
-        <h5 v-if="title" class="mb-1 col-12 p-1" v-html="getTitle"></h5>
+    <div :class="getHtmlClass('section')" >
+        <h5 v-if="title" :class="getHtmlClass('title')" v-html="getTitle"></h5>
         <template v-for="item in getItems">
             <component :is="item.component" v-bind="item.attrs" v-if="item && typeof(item.if) === 'function'? item.if(getContext) : item" :storeNamespace="item.attrs.storeNamespace || storeNamespace" >
                 <template v-if="item.text">{{ item.text }}</template>
@@ -16,10 +16,15 @@
 </template>
 
 <script>
-    import GlobalField from "../../../handel/functions/field/global.func";
+    import FormGlobal from "../../../handel/functions/form/global.func";
+    import FormFields from "../../../handel/functions/form/fields.func";
 
     export default {
         name: "i-form-fields",
+        index: {
+            group: 'forms',
+            html: 'fields',
+        },
         props: {
             items: [Object, Array, Function],
             title: [String, Function],
@@ -31,26 +36,11 @@
             }
         },
         computed: {
-            ...GlobalField.computed(),
-            getTitle: function (){
-                return typeof(this.title) == 'function' ? this.title(this) : this.title;
-            },
-            getItems() {
-                var $this = this;
-                var $items = typeof(this.items) == 'function' ? this.items(this) : this.items;
-                $items = Array.from($items).map(function (v) {
-                    if(v.useESubmit)
-                        v.attrs.externalSubmit = $this.externalSubmit
-                    return v;
-                })
-                return $items
-            },
-            style() {
-                return this.css || null;
-            }
+            ...FormGlobal.computed(),
+            ...FormFields.computed(),
         },
         methods: {
-            ...GlobalField.methods()
+            ...FormGlobal.methods()
         },
     }
 </script>

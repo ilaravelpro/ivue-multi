@@ -5,22 +5,27 @@
   -->
 
 <template>
-    <div class="i-star-rating">
-        <div class="d-flex flex-wrap" :class="{'cursor-pointer': dynamic}">
+    <div :class="getHtmlClass('section')">
+        <div :class="getHtmlClass('group.self') + (dynamic ? ' cursor-pointer' : '')">
             <div v-for="score in 5">
                 <i @mouseover="hover(score)" @click="dynamic ? $emit('change', score) : () => {}" @mouseleave="setAllClass()" :class="styles[score]"></i>
             </div>
-            <span v-if="star" class="badge badge-primary badge-pill h-20px" >{{ star }}</span>
+            <span v-if="star" :class="getHtmlClass('group.text')" >{{ star }}</span>
         </div>
     </div>
 </template>
 
 <script>
 
-    import StarRating from "../../../handel/functions/utils/star.rating.func";
+    import ToolsStarRating from "../../../handel/functions/tools/star.rating.func";
+    import ToolsGlobal from "../../../handel/functions/tools/global.func";
 
     export default {
         name: "i-star-rating",
+        index: {
+            group: 'tools',
+            html: 'star-rating',
+        },
         props: {
             dynamic: {
                 type: Boolean,
@@ -40,14 +45,18 @@
                 styles: []
             }
         },
+        computed: {
+            ...ToolsGlobal.computed(),
+        },
         created() {
             this.setAllClass()
         },
         methods: {
-            ...StarRating.methods,
+            ...ToolsGlobal.methods(),
+            ...ToolsStarRating.methods,
         },
         watch: {
-            ...StarRating.watch,
+            ...ToolsStarRating.watch,
         }
     }
 </script>

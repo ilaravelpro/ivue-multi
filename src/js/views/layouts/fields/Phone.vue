@@ -31,6 +31,10 @@
 <script>
     export default {
         name: 'i-phone',
+        index: {
+            group: 'fields',
+            html: 'phone',
+        },
         model: {
             event: 'change'
         },

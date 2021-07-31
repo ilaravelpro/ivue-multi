@@ -5,33 +5,40 @@
   -->
 
 <template>
-    <ul class="pagination">
-        <li class="page-item" @click="previous()">
-            <a class="page-link" aria-label="Previous" :aria-disabled="current === 1">
-                <i class="fa fa-chevron-left font-size-12 color-black d-inline-flex"></i>
+    <ul :class="getHtmlClass('section')">
+        <li :class="getHtmlClass('previous.self')" @click="previous()">
+            <a :class="getHtmlClass('previous.link')" aria-label="Previous" :aria-disabled="current === 1">
+                <i :class="getHtmlClass('previous.icon')"></i>
             </a>
         </li>
         <template v-if="pages && current && pageList" v-for="i in pageList" >
-            <li v-if="i === 0" class="page-item page-split" ><span class="page-link color-black" >...</span></li>
-            <li v-else :class="`page-item ${current === i ? 'active' : ''}`" @click="click(i)"><a
-                class="page-link color-black" v-text="i"></a></li>
+            <li v-if="i === 0" :class="getHtmlClass('split.self')" ><span :class="getHtmlClass('split.link')" >...</span></li>
+            <li v-else :class="`${getHtmlClass('item.self')} ${current === i ? 'active' : ''}`" @click="click(i)"><a
+                :class="getHtmlClass('item.link')" v-text="i"></a></li>
         </template>
-        <li class="page-item" @click="next()">
-            <a class="page-link" aria-label="Next" :aria-disabled="current === pages">
-                <i class="fa fa-chevron-right font-size-12 color-black d-inline-flex"></i>
+        <li :class="getHtmlClass('next.self')" @click="next()">
+            <a :class="getHtmlClass('next.link')" aria-label="Next" :aria-disabled="current === pages">
+                <i :class="getHtmlClass('next.icon')"></i>
             </a>
         </li>
     </ul>
 </template>
 
 <script>
+    import DataTableGlobal from "../../../handel/functions/datatable/global.func";
+
     export default {
         name: "i-datatable-pagination",
+        index: {
+            group: 'datatable',
+            html: 'pagination',
+        },
         props: {
             current: [Number, String],
             pages: Number,
         },
         computed: {
+            ...DataTableGlobal.computed(),
             page: {
                 get: function () {
                     return this.current;
@@ -45,6 +52,7 @@
             }
         },
         methods: {
+            ...DataTableGlobal.methods(),
             click(i) {
                 this.page = i;
             },

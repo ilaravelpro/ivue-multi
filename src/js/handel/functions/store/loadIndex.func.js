@@ -4,9 +4,12 @@
  * Copyright (c) 2021. Powered by iamir.net
  */
 
+import FuncUtilsHtml from "../utils/html.func";
+
 const LoadIndexData = {
     computed() {
         return {
+            ...FuncUtilsHtml.computed(),
             iRecords() {
                 return this.$store.getters[this.storeNamespace + '/' + 'iRecords']
             },
@@ -32,6 +35,7 @@ const LoadIndexData = {
     },
     methods() {
         return {
+            ...FuncUtilsHtml.methods(),
             setState(key, value) {
                 return this.$store.dispatch(this.storeNamespace + '/setState', [key, value]);
             },
@@ -55,7 +59,7 @@ const LoadIndexData = {
     },
     watch() {
         return {
-
+            ...FuncUtilsHtml.watch(),
         }
     },
 };

@@ -6,26 +6,26 @@
 
 <template>
     <div>
-        <div v-if="errorAll.errors && errorAll.errors.length" class="alert alert-danger" role="alert">
-            <h4 class="alert-heading">Please fix the errors!!!</h4>
+        <div v-if="errorAll.errors && errorAll.errors.length" :class="getHtmlClass('alert.self')" role="alert">
+            <h4 :class="getHtmlClass('alert.head')">Please fix the errors!!!</h4>
             <ul>
                 <li v-for="(error, index) in errorAll.errors">{{ error }}</li>
             </ul>
         </div>
-        <div class="d-flex flex-wrap" ref="forms">
-            <div v-for="(row , index) in rows" :class="row.class" class="my-2 px-0 px-md-1 px-lg-3">
-                <div class="card" :class="getStyle('card.main')">
-                    <div v-if="$scopedSlots[`row.${row.name}.header`]" class="card-header">
+        <div :class="getHtmlClass('contents.self')" ref="forms">
+            <div v-for="(row , index) in rows" :class="getHtmlClass('contents.rows.self') + (row.class ? ' ' + row.class : '' )">
+                <div :class="getHtmlClass('contents.rows.card.self')">
+                    <div v-if="$scopedSlots[`row.${row.name}.header`]" :class="getHtmlClass('contents.rows.card.head')">
                         <slot :name="`row.${row.name}.header`" v-bind:row="row" v-bind:namespace="storeNamespace"></slot>
                     </div>
-                    <div class="card-body p-1" :class="getStyle('card.body')">
+                    <div :class="getHtmlClass('contents.rows.card.body.self')">
                         <loading v-if="row.loading !== false" :status="!loading"/>
                         <slot v-if="$scopedSlots[`row.${row.name}.body`]" :name="`row.${row.name}.body`" v-bind:row="row" v-bind:namespace="storeNamespace"></slot>
-                        <i-form v-else ref="form" class="d-flex flex-wrap" :resource="resource" :url="url" :type-form="typeForm" :name="multiple ? row.name : null" :store-namespace="storeNamespace"></i-form>
+                        <i-form v-else ref="form" :class="getHtmlClass('contents.rows.card.body.form')" :resource="resource" :url="url" :type-form="typeForm" :name="multiple ? row.name : null" :store-namespace="storeNamespace"></i-form>
                     </div>
-                    <div v-if="row.btn !== false" class="card-footer">
+                    <div v-if="row.btn !== false" :class="getHtmlClass('contents.rows.card.foot.self')">
                         <slot v-if="$scopedSlots[`row.${row.name}.footer`]" :name="`row.${row.name}.footer`" v-bind:row="row" v-bind:submit="submit" v-bind:namespace="storeNamespace"></slot>
-                        <button v-else type="submit" class="btn btn-primary" @click="submit">Submit</button>
+                        <button v-else type="submit" :class="getHtmlClass('contents.rows.card.foot.btn')" @click="submit">Submit</button>
                     </div>
                 </div>
             </div>
@@ -38,6 +38,10 @@
 
     export default {
         name: "i-page-create",
+        index: {
+            group: 'pages',
+            html: 'create',
+        },
         props: {
             storeNamespace: {
                 type: String,

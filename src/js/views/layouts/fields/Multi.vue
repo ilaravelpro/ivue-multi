@@ -31,6 +31,10 @@
 <script>
     export default {
         name: 'i-multi',
+        index: {
+            group: 'fields',
+            html: 'multi',
+        },
         model: {
             event: 'change'
         },
