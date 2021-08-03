@@ -43,8 +43,8 @@
 </template>
 
 <script>
-    import GlobalField from "../../../handel/functions/field/global.func";
     import FormWizard from "../../../handel/functions/form/wizard.func";
+    import FormGlobal from "../../../handel/functions/form/global.func";
 
     export default {
         name: "i-form-wizard",
@@ -73,11 +73,11 @@
           }
         },
         computed: {
-            ...GlobalField.computed(),
+            ...FormGlobal.computed(),
             ...FormWizard.computed(),
         },
         methods: {
-            ...GlobalField.methods(),
+            ...FormGlobal.methods(),
             ...FormWizard.methods(),
         }
     }

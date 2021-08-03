@@ -40,7 +40,7 @@ const DataTableList = {
             if (!this.server && sortKey) {
                 let order = this.sortOrders[sortKey] || 1;
                 items = items.slice().sort((a, b) => {
-                    let index = this.getIndex(this.columns, 'name', sortKey);
+                    let index = this.getFindIndex(this.columns, 'name', sortKey);
                     a = String(a[sortKey]).toLowerCase();
                     b = String(b[sortKey]).toLowerCase();
                     if (this.columns[index].type && this.columns[index].type === 'date') {
@@ -155,8 +155,11 @@ const DataTableList = {
             this.sortOrders[key] = this.sortOrders[key] * -1;
             if (this.server) this.paginateServer();
         },
-        getIndex(array, key, value) {
+        getFindIndex(array, key, value) {
             return array.findIndex(i => i[key] === value)
+        },
+        getIndex(key, value) {
+            return undefined
         },
         resetQuery() {
             this.filterData = {

@@ -118,7 +118,8 @@
         },
         computed: {
             ...GlobalField.computed(storeNamespace),
-            ...SelectField.computed
+            ...SelectField.computed,
+            ...AutoCompleteField.computed,
         },
         methods: {
             ...GlobalField.methods(storeNamespace),

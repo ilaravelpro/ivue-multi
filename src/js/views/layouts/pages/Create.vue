@@ -13,7 +13,9 @@
             </ul>
         </div>
         <div :class="getHtmlClass('contents.self')" ref="forms">
-            <div v-for="(row , index) in rows" :class="getHtmlClass('contents.rows.self') + (row.class ? ' ' + row.class : '' )">
+            <div v-for="(row , index) in rows" :class="getHtmlClassCallback('contents.rows.self', function($class) {
+              return $class + (row.class ? ' ' + row.class: '')
+            })">
                 <div :class="getHtmlClass('contents.rows.card.self')">
                     <div v-if="$scopedSlots[`row.${row.name}.header`]" :class="getHtmlClass('contents.rows.card.head')">
                         <slot :name="`row.${row.name}.header`" v-bind:row="row" v-bind:namespace="storeNamespace"></slot>

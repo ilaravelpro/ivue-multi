@@ -31,7 +31,7 @@
             </div>
         </div>
 
-        <div v-if="status && iStatuses && iStatuses instanceof Array && iStatuses.length > 1" :class="getHtmlClassOther('filter.status.self', {'index.filter.status.isChild': child, 'index.filter.status.noChild': child})">
+        <div v-if="status && iStatuses && iStatuses instanceof Array && iStatuses.length > 1" :class="getHtmlClassOther('filter.status.self', {'index.filter.status.isChild': child, 'index.filter.status.noChild': !child})">
             <button v-for="(status, index) in iStatuses" :class="getHtmlClassOther('filter.status.btn.self', {'index.filter.status.btn.noChild': (!child ? true : index),
              'index.filter.status.btn.isStatus': filterStatus === status.value,
              'index.filter.status.btn.noChildNoStatus': !child && filterStatus !== status.value,

@@ -9,7 +9,7 @@ const FileField = {
         classForBtn() {
             var classes = this.getHtmlClass('label.btn.self');
             if (this.multiple)
-                classes += this.getHtmlClass('label.btn.selfIf');
+                classes += ' ' + this.getHtmlClass('label.btn.selfIf');
             return classes;
         },
         getUrls() {

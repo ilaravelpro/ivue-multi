@@ -6,15 +6,15 @@ const ConfigHtmlLTRClassesFormsWizard = {
         },
         steps: 'steps',
         nav: {
-            self: 'nav',
-            vertical: 'flex-column nav-pills my-0 pl-2',
+            self: 'my-0 pl-2',
+            vertical: 'flex-column nav-pills',
             verticalIf: 'col-md-3',
             item: 'nav-item',
             link: 'nav-link'
         },
         content: {
             self: 'tab-content',
-            verticalIf: 'col-md-9',
+            vertical: 'col-md-9',
             tab: 'tab-pane fade show',
             btnLoad: 'btn btn-warning'
         },

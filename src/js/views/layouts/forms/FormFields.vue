@@ -40,7 +40,7 @@
             ...FormFields.computed(),
         },
         methods: {
-            ...FormGlobal.methods()
+            ...FormGlobal.methods(),
         },
     }
 </script>

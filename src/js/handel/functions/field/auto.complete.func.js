@@ -9,7 +9,7 @@ const AutoCompleteField = {
         classForHeaderSearch: function () {
             var classes = this.getHtmlClass('select.header.search');
             if (this.searchText === this.selectText)
-                classes += this.getHtmlClass('select.header.searchIf');
+                classes += ' ' + this.getHtmlClass('select.header.searchIf');
             return classes;
         }
     },

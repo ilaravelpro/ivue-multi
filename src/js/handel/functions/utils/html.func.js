@@ -35,9 +35,10 @@ const FuncUtilsHtml = {
                 return this.getConfigHtml(this.getHtmlDirection + '.classes.' + $baseindex + '.' + key, $default);
             },
             getHtmlClass(key, $default = '') {
+                var $baseindex = this.getIndex('globalClassBase', false) || (this.$options.index ? this.$options.index.group + '.global' : 'components.global');
                 var $classesDefault = this.getHtmlBaseClass('default.' + key, this.getHtmlGlobalClass('default.' + key, ''));
                 var $classesVariable = this.getHtmlBaseClass('variable.' + key, this.getHtmlGlobalClass('variable.' + key, ''));
-                var $iclasses = iPath.get(this.iHtmlClassAll, this.getIndex('class')) || iPath.get(this.iHtmlClassAll, 'global');
+                var $iclasses = iPath.get(this.iHtmlClassAll, this.getIndex('class')) || iPath.get(this.iHtmlClassAll, $baseindex);
                 $iclasses = iPath.get($iclasses, key, '');
                 var $cclasses = iPath.get(this.css, key, '');
                 $iclasses = ($cclasses || $iclasses || $classesVariable || $default);
@@ -48,7 +49,7 @@ const FuncUtilsHtml = {
                     })
                 }else
                     $classes += ' ' + $iclasses;
-                return $classes;
+                return $classes.trim();
             },
             getHtmlClassCallback(key, $callback , $default = undefined) {
                 var $class = this.getHtmlClass(key, $default);
@@ -59,14 +60,14 @@ const FuncUtilsHtml = {
                 var $classes = this.getHtmlClass(key, $default);
                 if ($object instanceof Object) {
                     $.each($object, function (i, v) {
-                        if (i.includes('index.')) {
+                        if (i.includes('index.') && v) {
                             var $class = $this.getHtmlClass(i.replace('index.', ''));
                             if($class) $classes += ' ' + $class;
                         }
                         else if (v) $classes += ' ' + i;
                     })
                 }
-                return $classes
+                return $classes.trim()
             },
             getHtmlBaseStyle(key, $default = {}) {
                 var $baseindex = this.getIndex('styleBase', false) || this.getIndex('globalStyleBase', false) || (this.$options.index ? this.$options.index.group + '.' + this.$options.index.html : 'components.global');
@@ -90,7 +91,7 @@ const FuncUtilsHtml = {
                     })
                 }else
                     $styles += $istyles;
-                return $styles;
+                return $styles.trim();
             },
         }
     },

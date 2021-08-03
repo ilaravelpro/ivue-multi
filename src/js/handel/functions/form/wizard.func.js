@@ -18,12 +18,11 @@ const FormWizard = {
             _class_nav() {
                 var $class = this.getHtmlClass('nav.self', '');
                 if (this.vertical) $class = this.getHtmlClass('nav.vertical', '') + ' ' + ($class === '' ? this.getHtmlClass('nav.verticalIf') : $class);
-                else $class += ' nav-tabs';
                 return $class.trim();
             },
             _class_contents() {
                 var $class = this.getHtmlClass('content.self', '');
-                if (this.vertical) $class = this.getHtmlClass('content.vertical', '') + ' ' + ($class === '' ? this.getHtmlClass('content.verticalIf') : $class);
+                if (this.vertical) $class = $class === '' ?  this.getHtmlClass('content.vertical', '') : $class;
                 return $class.trim();
             },
             _orientation() {
@@ -39,7 +38,7 @@ const FormWizard = {
             _class_nav_item(index) {
                 var $class = '';
                 if (index === 0) $class = 'first';
-                if (index === Object.keys(this.tabs).length - 1) $class = 'last';
+                if (index === Object.keys(this.getTabs).length - 1) $class = 'last';
                 if (index < this.current) $class += ' done';
                 if (this.current === index) $class += ' active';
                 return $class;

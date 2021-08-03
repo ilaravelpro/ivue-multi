@@ -23,9 +23,9 @@
                     <template v-if="typeof(body) === 'function'">
                         <template v-for="comp in body({}, -1, getContext)">
                             <div v-if="comp.component === 'i-form-fields'" :class="comp.attrs.class">
-                                <div v-for="child in comp.attrs.items" :class="String(getHtmlClass('group.head.child') + (child.attrs.class ? ' ' + child.attrs.class : '')).trim()">{{ child.attrs.placeholder }}</div>
+                                <div v-for="child in comp.attrs.items" :class="String(getHtmlClass('group.head.child') + (child.attrs.class ? ' ' + child.attrs.class : '')).trim()">{{ child.title || child.attrs.placeholder }}</div>
                             </div>
-                            <div v-else :class="String(getHtmlClass('group.head.child') + (comp.attrs.class ? ' ' + comp.attrs.class : '')).trim()">{{ comp.attrs.placeholder }}</div>
+                            <div v-else :class="String(getHtmlClass('group.head.child') + (comp.attrs.class ? ' ' + comp.attrs.class : '')).trim()">{{ comp.title || comp.attrs.placeholder }}</div>
                         </template>
                     </template>
                 </div>
@@ -49,7 +49,6 @@
             </template>
         </i-base>
         <div :class="getHtmlClass('add.self')">
-            <label v-if="title" :class="getHtmlClass('label')"></label>
             <div :class="getHtmlClass('add.item')">
                 <a @click="addRow"
                    :class="getHtmlClass('add.link')">

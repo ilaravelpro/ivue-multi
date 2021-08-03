@@ -5,10 +5,10 @@
   -->
 
 <template>
-    <div :class="getClassHtml('input-group')">
-        <i-base-autocomplete :class="getClassHtml('groups.country')" placeholder="+1" :items="countries" v-model="model.country" :release="(country, index) => {return {text: `+${country.code}`, value: country.code}}" :options="getOptions"/>
-        <i-base-input v-if="prefix" :class="getClassHtml('groups.prefix')" v-model="model.prefix" :options="getOptions"/>
-        <i-base-input :class="getClassHtml('groups.' + (prefix ? 'number' : 'numberIf'))" v-model="model.number" :options="getOptions"/>
+    <div :class="getHtmlClass('input-group')">
+        <i-base-autocomplete :class="getHtmlClass('groups.country')" placeholder="+1" :items="countries" v-model="model.country" :release="(country, index) => {return {text: `+${country.code}`, value: country.code}}" :options="getOptions"/>
+        <i-base-input v-if="prefix" :class="getHtmlClass('groups.prefix')" v-model="model.prefix" :options="getOptions"/>
+        <i-base-input :class="getHtmlClass('groups.' + (prefix ? 'number' : 'numberIf'))" v-model="model.number" :options="getOptions"/>
     </div>
 </template>
 
