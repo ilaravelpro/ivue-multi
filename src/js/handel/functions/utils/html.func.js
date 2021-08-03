@@ -50,6 +50,24 @@ const FuncUtilsHtml = {
                     $classes += ' ' + $iclasses;
                 return $classes;
             },
+            getHtmlClassCallback(key, $callback , $default = undefined) {
+                var $class = this.getHtmlClass(key, $default);
+                return $callback($class, key, $default)
+            },
+            getHtmlClassOther(key, $object , $default = undefined) {
+                var $this = this;
+                var $classes = this.getHtmlClass(key, $default);
+                if ($object instanceof Object) {
+                    $.each($object, function (i, v) {
+                        if (i.includes('index.')) {
+                            var $class = $this.getHtmlClass(i.replace('index.', ''));
+                            if($class) $classes += ' ' + $class;
+                        }
+                        else if (v) $classes += ' ' + i;
+                    })
+                }
+                return $classes
+            },
             getHtmlBaseStyle(key, $default = {}) {
                 var $baseindex = this.getIndex('styleBase', false) || this.getIndex('globalStyleBase', false) || (this.$options.index ? this.$options.index.group + '.' + this.$options.index.html : 'components.global');
                 return this.getConfigHtml(this.getHtmlDirection + '.styles.' + $baseindex + '.' + key, $default);

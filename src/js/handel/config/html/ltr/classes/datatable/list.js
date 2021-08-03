@@ -3,7 +3,7 @@ const ConfigHtmlLTRClassesDataTableList = {
         section: 'data-table',
         filter: {
             self: 'row mx-0',
-            isChild: 'px-lg-3',
+            noChild: 'px-lg-3',
             form: {
                 self: 'col-lg-6 col-xl-5 col-12 px-0',
                 fields: {
@@ -32,7 +32,12 @@ const ConfigHtmlLTRClassesDataTableList = {
                 isChild: 'mx-0 p-0 mb-2',
                 noChild: 'mx-2 mx-lg-4',
                 btn: {
-                    self: 'btn px-6 font-weight-bold'
+                    self: 'btn px-6 font-weight-bold',
+                    noChild: 'mx-2',
+                    isStatus: 'bg-green color-white',
+                    noChildNoStatus: 'bg-white color-primary',
+                    isChildNoStatus: 'bg-primary color-white',
+
                 }
             }
         },
