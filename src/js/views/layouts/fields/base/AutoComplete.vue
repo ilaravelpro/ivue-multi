@@ -8,7 +8,7 @@
     <div ref="select" class="i-autocomplete" :class="classForField">
         <div :class="getHtmlClass('select.header.self')">
             <div :class="getHtmlClass('select.header.group')">
-                <input ref="search" type="text" :placeholder="placeholder" :class="classForHeaderSearch"
+                <input ref="search" type="text" :placeholder="getTrans(placeholder)" :class="classForHeaderSearch"
                        @keyup="filtering($event)" v-model="searchText" @focusin="focusin" @focusout="focusoutInternal">
             </div>
         </div>
@@ -43,7 +43,7 @@
             value: [String, Number, Object, Array],
             placeholder: {
                 type: String,
-                default: 'Please Type...'
+                default: 'ivue.fields.autocomplete.placeholder'
             },
             desc: [String, Number, Object, Array],
             storeNamespace: {

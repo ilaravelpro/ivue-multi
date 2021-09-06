@@ -20,7 +20,7 @@
         <template slot="body">
             <template v-for="item in fields">
                 <component :is="item.component" v-bind="item.attrs" :storeNamespace="storeNamespace">
-                    <template v-if="item.text">{{ item.text }}</template>
+                    <template v-if="item.text">{{ trans(item.text) }}</template>
                 </component>
             </template>
         </template>

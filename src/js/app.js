@@ -6,4 +6,5 @@
 
 import './handel/index';
 import './bootstrap';
+import './handel/services/system/mixin.service';
 import './handel/services/system/component.service';

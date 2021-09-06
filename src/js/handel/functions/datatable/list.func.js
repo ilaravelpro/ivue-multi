@@ -15,7 +15,7 @@ const DataTableList = {
             }) : [
                 {
                     name: "all",
-                    title: "all",
+                    title: this.trans("ivue.datatable.list.filter.items.all"),
                     type: "text",
                 }
             ];
@@ -59,14 +59,14 @@ const DataTableList = {
         },
         getActions() {
             var $delete = {
-                title: 'Delete',
+                title: this.trans("ivue.datatable.list.actions.delete"),
                 name: 'delete',
                 icon: 'fa fa-trash-alt',
                 type: 'func',
                 action: this.deleteItem
             };
             var $edit =  {
-                title: 'Edit',
+                title: this.trans("ivue.datatable.list.actions.edit"),
                 name: 'edit',
                 icon: 'fa fa-edit',
                 type: 'linkWithId',
@@ -124,7 +124,7 @@ const DataTableList = {
             });
             style += `
                     .data-table table tbody tr td:last-child:before {
-                        content: "Action"
+                        content: ${this.trans("ivue.datatable.list.actions.title")}
                     }`
             style += '}'
             if (!style) return;

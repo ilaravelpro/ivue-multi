@@ -1,0 +1,49 @@
+/*!
+ * Author: Amir Hossein Jahani | iAmir.net
+ * Last modified: 9/5/20, 10:11 PM
+ * Copyright (c) 2021. Powered by iamir.net
+ */
+
+//==========================================
+// background options
+//==========================================
+@each $name, $items in $background {
+    @each $item in $items {
+        $attr : str-replace($name,'bg-','background-');
+        .#{$name}-#{$item} {
+            $attr: $item !important;
+        }
+    }
+}
+@include media-breakpoint-up(sm)  {
+    @each $name, $items in $background {
+        @each $item in $items {
+            $attr : str-replace($name,'bg-','background-md-');
+            .#{$name}-#{$item} {
+                $attr: $item !important;
+            }
+        }
+    }
+}
+
+@include media-breakpoint-up(lg)  {
+    @each $name, $items in $background {
+        @each $item in $items {
+            $attr : str-replace($name,'bg-','background-lg-');
+            .#{$name}-#{$item} {
+                $attr: $item !important;
+            }
+        }
+    }
+}
+
+@include media-breakpoint-up(xl) {
+    @each $name, $items in $background {
+        @each $item in $items {
+            $attr : str-replace($name,'bg-','background-xl-');
+            .#{$name}-#{$item} {
+                $attr: $item !important;
+            }
+        }
+    }
+}

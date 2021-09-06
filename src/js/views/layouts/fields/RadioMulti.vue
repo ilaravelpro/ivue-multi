@@ -8,13 +8,13 @@
     <div>
         <div v-for="(item, index) in filteredAndSorted" :key="index">
             <label :class="getHtmlClass('radio.self')">
-                <span :class="getHtmlClass('radio.title')">{{ item.title }}</span>
+                <span :class="getHtmlClass('radio.title')">{{ trans(item.title) }}</span>
                 <input type="radio" @change="checking(item)"
                        :checked="checked(item)" :value="item.id">
                 <span :class="getHtmlClass('radio.checkmark')"></span>
             </label>
             <label v-for="(child, cindex) in item.children" :class="getHtmlClass('radio.child.self')">
-                <span :class="getHtmlClass('radio.child.title')">{{ child.title }}</span>
+                <span :class="getHtmlClass('radio.child.title')">{{ trans(child.title) }}</span>
                 <input type="radio" @change="checking(child)" :checked="checked(child)"
                        :value="child.id">
                 <span :class="getHtmlClass('radio.child.checkmark')"></span>

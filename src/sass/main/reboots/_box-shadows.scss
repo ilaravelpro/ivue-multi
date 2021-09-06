@@ -1,0 +1,32 @@
+/*!
+ * Author: Amir Hossein Jahani | iAmir.net
+ * Last modified: 4/4/20, 12:03 PM
+ * Copyright (c) 2021. Powered by iamir.net
+ */
+
+//==========================================
+//box shadows
+//==========================================
+
+@mixin i-box-shadow($space) {
+    .box-shadow#{$space}-none {
+        box-shadow: none !important;
+    }
+}
+@include i-box-shadow('');
+
+@include media-breakpoint-down(sm)  {
+    @include i-box-shadow('-sm');
+}
+
+@include media-breakpoint-up(sm)  {
+    @include i-box-shadow('-md');
+}
+
+@include media-breakpoint-up(lg)  {
+    @include i-box-shadow('-lg');
+}
+
+@include media-breakpoint-up(xl) {
+    @include i-box-shadow('-xl');
+}

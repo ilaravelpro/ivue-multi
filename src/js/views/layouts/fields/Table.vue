@@ -7,7 +7,7 @@
 <template>
     <div :class="getHtmlClass('table.self')">
         <h5 v-if="title" :class="getHtmlClass('table.title')">{{ title }}</h5>
-        <button :class="getHtmlClass('table.btnLoad')" v-if="!viewTable" @click="viewTable = !viewTable">Load Table</button>
+        <button :class="getHtmlClass('table.btnLoad')" v-if="!viewTable" @click="viewTable = !viewTable">{{ trans('ivue.fields.table.load') }}</button>
         <div :class="getHtmlClass('table.contents.self')" v-if="viewTable">
             <component v-if="getSlots('columns')" :is="getSlots('columns')"
                        :store-namespace="storeNamespace"></component>

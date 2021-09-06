@@ -7,7 +7,7 @@
 <template>
     <ul :class="getHtmlClass('section')">
         <li :class="getHtmlClass('previous.self')" @click="previous()">
-            <a :class="getHtmlClass('previous.link')" aria-label="Previous" :aria-disabled="current === 1">
+            <a :class="getHtmlClass('previous.link')" :aria-label="trans('ivue.datatable.list.pagination.previous')" :aria-disabled="current === 1">
                 <i :class="getHtmlClass('previous.icon')"></i>
             </a>
         </li>
@@ -17,7 +17,7 @@
                 :class="getHtmlClass('item.link')" v-text="i"></a></li>
         </template>
         <li :class="getHtmlClass('next.self')" @click="next()">
-            <a :class="getHtmlClass('next.link')" aria-label="Next" :aria-disabled="current === pages">
+            <a :class="getHtmlClass('next.link')" :aria-label="trans('ivue.datatable.list.pagination.next')" :aria-disabled="current === pages">
                 <i :class="getHtmlClass('next.icon')"></i>
             </a>
         </li>

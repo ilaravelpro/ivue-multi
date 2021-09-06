@@ -15,7 +15,7 @@ const getters = {
 
 const actions = {
     set(context, [key, value]) {
-        return context.commit('add', [key, value]);
+        return context.commit('set', [key, value]);
     },
     remove(context, key) {
         return context.commit('remove', key);

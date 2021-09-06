@@ -16,6 +16,9 @@ const FuncUtilsHtml = {
             iHtmlClassAll() {
                 return this.$store.getters[this.storeNamespace + '/' + 'iHtmlClassAll']
             },
+            getHtmlAllDirection() {
+                return this.getConfigHtml('base.direction.all', 'ltr');
+            },
             getHtmlDirection() {
                 return this.getConfigHtml('base.direction.current', this.getConfigHtml('base.direction.all', 'ltr'));
             },
@@ -97,12 +100,6 @@ const FuncUtilsHtml = {
     },
     watch() {
         return {
-            iConfigHtml: {
-                handler: function () {
-                    console.log(2)
-                },
-                deep: true
-            }
         }
     },
 };

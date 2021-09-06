@@ -5,7 +5,7 @@
   -->
 
 <template>
-    <label class="switch" :class="classForField">
+    <label class="i-switch" :class="classForField">
         <input type="checkbox" :checked="getCheck" :class="{'checked': getCheck}" @click="changeValue()">
         <span class="slider" :class="styleForSlider"></span>
     </label>

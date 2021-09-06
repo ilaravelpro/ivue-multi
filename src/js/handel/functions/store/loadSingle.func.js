@@ -5,6 +5,7 @@
  */
 
 import FuncUtilsHtml from "../utils/html.func";
+import TranslateService from "../../services/system/translate.service";
 
 const LoadSingleData = {
     setValueOnCreate($this) {
@@ -157,6 +158,9 @@ const LoadSingleData = {
             },
             getSlots(name) {
                 return this.slots && this.slots[name] ? this.slots[name] : false;
+            },
+            getTrans(key) {
+                return this.trans(key);
             },
             submit() {
                 return new Promise((resolve, reject) => {

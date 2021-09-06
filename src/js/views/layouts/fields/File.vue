@@ -58,7 +58,7 @@
             },
             btnTitle: {
                 type: String,
-                default: 'Upload'
+                default: 'ivue.fields.file.upload'
             },
             options: {
                 type: [Object, Array, Function],

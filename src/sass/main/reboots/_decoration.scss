@@ -1,0 +1,38 @@
+/*!
+ * Author: Amir Hossein Jahani | iAmir.net
+ * Last modified: 4/4/20, 12:02 PM
+ * Copyright (c) 2021. Powered by iamir.net
+ */
+
+//==========================================
+//text decoration line
+//==========================================
+$decorations: (none, line-through, underline) !default;
+@include media-breakpoint-up(sm)  {
+    @each $decoration in $decorations {
+        .text-decoration-md-#{$decoration} {
+            text-decoration: $decoration !important;
+        }
+    }
+}
+
+@include media-breakpoint-up(lg)  {
+    @each $decoration in $decorations {
+        .text-decoration-lg-#{$decoration} {
+            text-decoration: $decoration !important;
+        }
+    }
+}
+
+@include media-breakpoint-up(xl) {
+    @each $decoration in $decorations {
+        .text-decoration-xl-#{$decoration} {
+            text-decoration: $decoration !important;
+        }
+    }
+}
+
+a, a:active, a:hover {
+    text-decoration: none;
+    color: inherit;
+}

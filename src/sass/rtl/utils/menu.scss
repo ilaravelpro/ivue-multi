@@ -1,0 +1,53 @@
+/*!
+ * Author: Amir Hossein Jahani | iAmir.net
+ * Last modified: 11/17/20, 4:00 PM
+ * Copyright (c) 2021. Powered by iamir.net
+ */
+
+.info-user {
+    .flag {
+        span {
+            float: left;
+            margin-left: 5px;
+        }
+    }
+}
+
+.info-code {
+    & > div:last-child {
+        text-align: left;
+    }
+}
+
+.menu-left {
+    right: -275px;
+    left: auto;
+    -webkit-transition: left 0.3s ease, right 0.3s ease;
+    transition: left 0.3s ease, right 0.3s ease;
+    &.show {
+        -webkit-transition: right 0.3s ease, left 0.3s ease;
+        transition: right 0.3s ease, left 0.3s ease;
+        right: 0;
+        left: auto;
+    }
+}
+.menu-right {
+    left: -275px;
+    right: auto;
+    -webkit-transition: right 0.3s ease, left 0.3s ease;
+    transition: right 0.3s ease, left 0.3s ease;
+    &.show {
+        -webkit-transition: left 0.3s ease, right 0.3s ease;
+        transition: left 0.3s ease, right 0.3s ease;
+        left: 0;
+        right: auto;
+    }
+}
+
+#main {
+    transition: margin-right .5s;
+}
+
+.black-page {
+    left: 0;
+}

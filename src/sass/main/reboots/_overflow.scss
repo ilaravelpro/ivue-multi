@@ -1,0 +1,47 @@
+@each $overflow in $overflows {
+    @each $overflow_attr in $overflow_attrs {
+        .#{$overflow_attr}-#{$overflow} {
+            $overflow_attr: $overflow !important;
+        }
+    }
+}
+
+@include media-breakpoint-down(sm)  {
+    @each $overflow in $overflows {
+        @each $overflow_attr in $overflow_attrs {
+            .#{$overflow_attr}-sm-#{$overflow} {
+                $overflow_attr: $overflow !important;
+            }
+        }
+    }
+}
+
+@include media-breakpoint-up(sm)  {
+    @each $overflow in $overflows {
+        @each $overflow_attr in $overflow_attrs {
+            .#{$overflow_attr}-md-#{$overflow} {
+                $overflow_attr: $overflow !important;
+            }
+        }
+    }
+}
+
+@include media-breakpoint-up(lg)  {
+    @each $overflow in $overflows {
+        @each $overflow_attr in $overflow_attrs {
+            .#{$overflow_attr}-lg-#{$overflow} {
+                $overflow_attr: $overflow !important;
+            }
+        }
+    }
+}
+
+@include media-breakpoint-up(xl) {
+    @each $overflow in $overflows {
+        @each $overflow_attr in $overflow_attrs {
+            .#{$overflow_attr}-xl-#{$overflow} {
+                $overflow_attr: $overflow !important;
+            }
+        }
+    }
+}

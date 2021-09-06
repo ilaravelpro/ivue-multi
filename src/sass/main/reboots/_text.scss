@@ -1,0 +1,86 @@
+@mixin text-no-wrap() {
+    .text-no-wrap {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        display: inline-block;
+    }
+}
+
+@each $name, $text-size in $text-sizes {
+    .text-#{$name} {
+        font-size: $text-size !important;
+    }
+}
+
+@each $name, $text-weight in $text-weights {
+    .text-#{$name} {
+        font-weight: $text-weight !important;
+    }
+}
+
+@include text-no-wrap();
+
+@include media-breakpoint-down(sm)  {
+    @each $name, $text-size in $text-sizes {
+        .text-sm-#{$name} {
+            font-size: $text-size !important;
+        }
+    }
+    @each $name, $text-weight in $text-weights {
+        .text-sm-#{$name} {
+            font-weight: $text-weight !important;
+        }
+    }
+    .text-no-wrap-sm {
+        @include text-no-wrap();
+    }
+}
+
+@include media-breakpoint-up(sm)  {
+    @each $name, $text-size in $text-sizes {
+        .text-md-#{$name} {
+            width: $text-size !important;
+        }
+    }
+    @each $name, $text-weight in $text-weights {
+        .text-md-#{$name} {
+            font-weight: $text-weight !important;
+        }
+    }
+    .text-no-wrap-md {
+        @include text-no-wrap();
+    }
+}
+
+@include media-breakpoint-up(lg)  {
+    @each $name, $text-size in $text-sizes {
+        .text-lg-#{$name} {
+            width: $text-size !important;
+        }
+    }
+    @each $name, $text-weight in $text-weights {
+        .text-lg-#{$name} {
+            font-weight: $text-weight !important;
+        }
+    }
+    .text-no-wrap-lg {
+        @include text-no-wrap();
+    }
+}
+
+@include media-breakpoint-up(xl) {
+    @each $name, $text-size in $text-sizes {
+        .text-xl-#{$name} {
+            width: $text-size !important;
+        }
+    }
+    @each $name, $text-weight in $text-weights {
+        .text-xl-#{$name} {
+            font-weight: $text-weight !important;
+        }
+    }
+    .text-no-wrap-xl {
+        @include text-no-wrap();
+    }
+}

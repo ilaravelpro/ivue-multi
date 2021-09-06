@@ -12,7 +12,7 @@
             <div :class="getHtmlClass('add.item')">
                 <a @click="addRow"
                    :class="getHtmlClass('add.link')">
-                    <i :class="getHtmlClass('add.icon')"></i> {{ addTitle ? addTitle : 'Add Item'}}
+                    <i :class="getHtmlClass('add.icon')"></i> {{ trans(addTitle) }}
                 </a>
             </div>
         </div>
@@ -23,11 +23,11 @@
                          aria-expanded="false" :aria-controls="'collapse_' + id + '_' +index">
                         <div v-if="typeof(header) === 'function'" :class="getHtmlClass('contents.card.head.title.text')" v-html="header(row, index, prefixTitle)"></div>
                         <slot v-else-if="$scopedSlots['row.title']" name="row.title" v-bind:row="row" v-bind:index="index" v-bind:prefix="prefixTitle"></slot>
-                        <span v-else :class="getHtmlClass('contents.card.head.title.text')">{{ prefixTitle }} {{ getValue(getIndex('get')+'.'+index+'.'+itemName) && getValue(getIndex('get')+'.'+index+'.'+itemName) !== "undefined" ? getValue(getIndex('get')+'.'+index+'.'+itemName) : index+1 }}</span>
+                        <span v-else :class="getHtmlClass('contents.card.head.title.text')">{{ trans(prefixTitle) }} {{ getValue(getIndex('get')+'.'+index+'.'+itemName) && getValue(getIndex('get')+'.'+index+'.'+itemName) !== "undefined" ? getValue(getIndex('get')+'.'+index+'.'+itemName) : index+1 }}</span>
                         <a @click="removeRow(index)" v-if="getOption('delBtn') !== false"
                            :class="getHtmlClass('contents.card.head.del.self')">
                             <i :class="getHtmlClass('contents.card.head.del.icon')"></i>
-                            Delete
+                            {{ trans('ivue.repeaters.accordion.actions.delete') }}
                         </a>
                     </div>
                 </div>
@@ -65,7 +65,7 @@
             },
             addTitle: {
                 type: String,
-                default : ""
+                default : "ivue.repeaters.accordion.actions.add"
             },
             prefixTitle: {
                 type: String,

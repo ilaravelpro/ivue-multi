@@ -12,7 +12,7 @@
             <div :class="getHtmlClass('add.item')">
                 <a @click="addRow"
                    :class="getHtmlClass('add.link')">
-                    <i :class="getHtmlClass('add.icon')"></i> {{ addTitle ? addTitle : 'Add Item'}}
+                    <i :class="getHtmlClass('add.icon')"></i> {{ trans(addTitle) }}
                 </a>
             </div>
         </div>
@@ -21,10 +21,10 @@
                 <div :class="getHtmlClass('contents.head.self')">
                     <div v-if="typeof(header) === 'function'" v-html="header(row, index, getContext)"></div>
                     <slot v-else-if="$scopedSlots['row.title']" name="row.title" v-bind:row="row" v-bind:index="index" v-bind:prefix="prefixTitle"></slot>
-                    <span v-else :class="getHtmlClass('contents.head.title')">{{ prefixTitle }} {{ getValue(getIndex('get')+'.'+index+'.'+itemName) && getValue(getIndex('get')+'.'+index+'.'+itemName) !== "undefined" ? getValue(getIndex('get')+'.'+index+'.'+itemName) : index+1 }}</span>
+                    <span v-else :class="getHtmlClass('contents.head.title')">{{ trans(prefixTitle) }} {{ getValue(getIndex('get')+'.'+index+'.'+itemName) && getValue(getIndex('get')+'.'+index+'.'+itemName) !== "undefined" ? getValue(getIndex('get')+'.'+index+'.'+itemName) : index+1 }}</span>
                     <a @click="removeRow(index)"  v-if="getOption('delBtn') !== false" :class="getHtmlClass('contents.head.del.link')">
                         <i :class="getHtmlClass('contents.head.del.icon')"></i>
-                        Delete
+                        {{ trans('ivue.repeaters.timeline.actions.delete') }}
                     </a>
                 </div>
                 <div :class="getHtmlClass('contents.body.self')">
@@ -58,7 +58,7 @@
             },
             addTitle: {
                 type: String,
-                default : ""
+                default : "ivue.repeaters.timeline.actions.add"
             },
             prefixTitle: {
                 type: String,

@@ -21,13 +21,13 @@
                                             :items="filterData.type.items"
                                             v-model="filterData.value"/>
                         </div>
-                        <i-input  v-if="filterData.type && filterData.type.type === 'text'" v-model="filterData.value"  placeholder="Search..." :options="{icon: {append: {class: getHtmlClass('filter.form.fields.value.icon')}}}" />
+                        <i-input  v-if="filterData.type && filterData.type.type === 'text'" v-model="filterData.value"  placeholder="ivue.datatable.list.filter.search" :options="{icon: {append: {class: getHtmlClass('filter.form.fields.value.icon')}}}" />
                     </div>
                 </div>
             </div>
             <div :class="getHtmlClassOther('filter.form.actions.self', {'index.filter.form.actions.isChild': child})">
-                <button v-if="server" :class="getHtmlClass('filter.form.actions.search')" @click="paginateServer()">Search</button>
-                <button :class="getHtmlClass('filter.form.actions.reset')" @click="resetQuery()">Reset</button>
+                <button v-if="server" :class="getHtmlClass('filter.form.actions.search')" @click="paginateServer()">{{ trans("ivue.datatable.list.filter.buttons.search") }}</button>
+                <button :class="getHtmlClass('filter.form.actions.reset')" @click="resetQuery()">{{ trans("ivue.datatable.list.filter.buttons.reset") }}</button>
             </div>
         </div>
 
@@ -37,7 +37,7 @@
              'index.filter.status.btn.noChildNoStatus': !child && filterStatus !== status.value,
              'index.filter.status.btn.isChildNoStatus': child && filterStatus !== status.value,
             })" @click="changeStatus(status.value)">
-                {{ status.text.charAt(0).toUpperCase() + status.text.slice(1) }}
+                {{ capitalizeFirstLetter(status.text) }}
             </button>
         </div>
 
@@ -50,9 +50,9 @@
                         <th v-for="column in columns" :key="column.name" @click="sortBy(column.name)"
                             :class="sortKey === column.name ? (sortOrders[column.name] > 0 ? 'sorting_asc' : 'sorting_desc') : 'sorting'"
                             :style="`width: ${100 / (columns.length + 2)}%; cursor:pointer;`">
-                            {{column.label}}
+                            {{ trans(column.label) }}
                         </th>
-                        <th v-if="action" :style="`width: ${100 / (columns.length + 2)}%; cursor:pointer;`">Action</th>
+                        <th v-if="action" :style="`width: ${100 / (columns.length + 2)}%; cursor:pointer;`">{{ trans("ivue.datatable.list.actions.title") }}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -77,7 +77,7 @@
                 <div :class="getHtmlClass('container.list.pagination.start.self')">
                     <div :class="getHtmlClass('container.list.pagination.start.length.self')">
                         <select v-model="pagination.length" :class="getHtmlClass('container.list.pagination.start.length.select')" id="rawsPerPage" @change="resetPagination()"
-                                data-toggle="tooltip" data-placement="top" title="Rows per page">
+                                data-toggle="tooltip" data-placement="top" :title="getTrans('ivue.datatable.list.pagination.rawsPerPage')">
                             <option v-for="itemPerPage in itemsPerPage" :value="itemPerPage">{{ itemPerPage }}</option>
                         </select>
                     </div>
@@ -86,7 +86,7 @@
                 </div>
                 <div :class="getHtmlClass('container.list.pagination.end.self')">
                     <div :class="getHtmlClass('container.list.pagination.end.text')">
-                        {{pagination.from}} - {{pagination.to}} of {{pagination.total}}
+                        {{pagination.from}} - {{pagination.to}} {{ trans('ivue.datatable.list.pagination.of') }} {{pagination.total}}
                     </div>
                 </div>
             </div>

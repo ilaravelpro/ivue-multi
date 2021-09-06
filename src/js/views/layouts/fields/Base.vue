@@ -9,7 +9,7 @@
         <label v-if="label" :class="getHtmlClass('label')">
             <component v-if="getSlots('label-prepend')" :is="getSlots('label-prepend')" :store-namespace="storeNamespace"></component>
             <slot v-else name="label-prepend"/>
-            {{ label }}
+            {{ trans(label) }}
             <component v-if="getSlots('label-append')" :is="getSlots('label-append')" :store-namespace="storeNamespace"></component>
             <slot v-else name="label-append"/>
         </label>
@@ -33,7 +33,7 @@
                     <slot v-else name="append"></slot>
                 </template>
             </div>
-            <span v-if="getDesc && getDesc.length > 0" :class="getHtmlClass('input-group-desc')">{{ getDesc }}</span>
+            <span v-if="getDesc && getDesc.length > 0" :class="getHtmlClass('input-group-desc')">{{ trans(getDesc) }}</span>
         </div>
     </div>
 </template>

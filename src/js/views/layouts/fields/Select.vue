@@ -39,11 +39,11 @@
             value: [String, Number, Object, Array],
             placeholder: {
                 type: String,
-                default: 'Please Select...'
+                default: 'ivue.fields.select.placeholder'
             },
             placeholderSelected: {
                 type: String,
-                default: 'Selected'
+                default: 'ivue.fields.select.placeholderSelected'
             },
             desc: [String, Number, Object, Array],
             storeNamespace: {

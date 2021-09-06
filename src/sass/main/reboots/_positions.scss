@@ -1,0 +1,56 @@
+/*!
+ * Author: Amir Hossein Jahani | iAmir.net
+ * Last modified: 4/16/21, 8:47 PM
+ * Copyright (c) 2021. Powered by iamir.net
+ */
+//
+// Positions
+//
+@each $position in $positions {
+    .position-#{$position} {
+        position: $position !important;
+    }
+    @each $pos in left, right, top, bottom, flex {
+        .#{$pos}-0 {
+            $pos: 0 !important;
+        }
+    }
+}
+@include media-breakpoint-up(sm)  {
+    @each $position in $positions {
+        .position-md-#{$position} {
+            position: $position !important;
+        }
+    }
+    @each $pos in left, right, top, bottom, flex {
+        .#{$pos}-md-0 {
+            $pos: 0 !important;
+        }
+    }
+}
+
+@include media-breakpoint-up(lg)  {
+    @each $position in $positions {
+        .position-lg-#{$position} {
+            position: $position !important;
+        }
+    }
+    @each $pos in left, right, top, bottom, flex {
+        .#{$pos}-lg-0 {
+            $pos: 0 !important;
+        }
+    }
+}
+
+@include media-breakpoint-up(xl) {
+    @each $position in $positions {
+        .position-xl-#{$position} {
+            position: $position !important;
+        }
+    }
+    @each $pos in left, right, top, bottom, flex {
+        .#{$pos}-xl-0 {
+            $pos: 0 !important;
+        }
+    }
+}

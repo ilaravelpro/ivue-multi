@@ -7,7 +7,7 @@
 <template>
     <div>
         <div v-if="errorAll.errors && errorAll.errors.length" :class="getHtmlClass('alert.self')" role="alert">
-            <h4 :class="getHtmlClass('alert.head')">Please fix the errors!!!</h4>
+            <h4 :class="getHtmlClass('alert.head')">{{ trans('ivue.pages.create.errors.fix') }}</h4>
             <ul>
                 <li v-for="(error, index) in errorAll.errors">{{ error }}</li>
             </ul>
@@ -27,7 +27,7 @@
                     </div>
                     <div v-if="row.btn !== false" :class="getHtmlClass('contents.rows.card.foot.self')">
                         <slot v-if="$scopedSlots[`row.${row.name}.footer`]" :name="`row.${row.name}.footer`" v-bind:row="row" v-bind:submit="submit" v-bind:namespace="storeNamespace"></slot>
-                        <button v-else type="submit" :class="getHtmlClass('contents.rows.card.foot.btn')" @click="submit">Submit</button>
+                        <button v-else type="submit" :class="getHtmlClass('contents.rows.card.foot.btn')" @click="submit">{{ trans('ivue.pages.create.actions.submit') }}</button>
                     </div>
                 </div>
             </div>

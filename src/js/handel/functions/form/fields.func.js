@@ -8,7 +8,7 @@ const FormFields = {
     computed() {
         return {
             getTitle: function (){
-                return typeof(this.title) == 'function' ? this.title(this) : this.title;
+                return typeof(this.title) == 'function' ? this.title(this) : this.trans(this.title);
             },
             getItems() {
                 var $this = this;

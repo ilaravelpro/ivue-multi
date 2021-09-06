@@ -16,7 +16,7 @@
                     </template>
                     <div :class="getHtmlClass('label.btn.group')" v-else>
                         <div :class="getHtmlClass('label.btn.icon')"></div>
-                        <div :class="getHtmlClass('label.btn.title')">{{ btnTitle }}</div>
+                        <div :class="getHtmlClass('label.btn.title')">{{ trans(btnTitle) }}</div>
                     </div>
                 </div>
                 <slot v-else name="action" v-bind:value="model" v-bind:url="url" v-bind:multiple="multiple"></slot>
@@ -68,7 +68,7 @@
             },
             btnTitle: {
                 type: String,
-                default: 'Upload'
+                default: 'ivue.fields.file.upload'
             },
             options: {
                 type: [Object, Array, Function],

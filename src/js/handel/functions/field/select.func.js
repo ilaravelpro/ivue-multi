@@ -9,20 +9,6 @@ const SelectField = {
         _value() {
             return this.model || this.value || null;
         },
-        getSelects() {
-            var $this = this;
-            if (this.multiple) {
-                return this._value && typeof (this._value) === 'object' && Object.keys(this._value).length ? Object.keys(this._value).length + " " + this.placeholderSelected : this.placeholder;
-            } else {
-                var $select = this._value;
-                if (this.getType === 'single') {
-                    $.each(this.itemsByFiltered, function (i, v) {
-                        if (v.value === $select) $select = v;
-                    })
-                }
-                return this._value && typeof ($select) !== 'undefined' && $select.text ? $select.text : this.placeholder;
-            }
-        },
         getItems() {
             return typeof (this.items) === 'function' ? this.items(this) : this.items;
         },
@@ -79,6 +65,20 @@ const SelectField = {
         }
     },
     methods: {
+        getSelects() {
+            var $this = this;
+            if (this.multiple) {
+                return this._value && typeof (this._value) === 'object' && Object.keys(this._value).length ? Object.keys(this._value).length + " " + this.trans(this.placeholderSelected) : this.trans(this.placeholder);
+            } else {
+                var $select = this._value;
+                if (this.getType === 'single') {
+                    $.each(this.itemsByFiltered, function (i, v) {
+                        if (v.value === $select) $select = v;
+                    })
+                }
+                return this._value && typeof ($select) !== 'undefined' && $select.text ? $select.text : this.trans(this.placeholder);
+            }
+        },
         deSelect() {
             this.model = null;
             $(this.$refs.select).find("ul li").removeClass("selected");

@@ -7,16 +7,16 @@
 <template>
     <div ref="select" class="i-select" :class="classForField">
         <div :class="getHtmlClass('select.header')" @click="onShow">
-            {{ getSelects }}
+            {{ getSelects() }}
         </div>
         <ul :class="getHtmlClass('select.items.self')" ref="items">
             <li v-if="search" :class="getHtmlClass('select.items.search.self')">
-                <input ref="search" type="text" placeholder="Search..." :class="getHtmlClass('select.items.search.input')" @keyup="filtering($event)" v-model="searchText">
+                <input ref="search" type="text" :placeholder="getTrans('ivue.fields.select.search')" :class="getHtmlClass('select.items.search.input')" @keyup="filtering($event)" v-model="searchText">
             </li>
             <li v-if="actions" :class="getHtmlClass('select.items.actions.self')">
                 <div :class="getHtmlClass('select.items.actions.group')">
-                    <button v-if="multiple" @click="selectAll" type="button" :class="getHtmlClass('select.items.actions.selectAll')">Select All</button>
-                    <button type="button" @click="deSelect" :class="getHtmlClass('select.items.actions.deSelectAll')">Deselect{{ multiple ? ' All' : ''}}</button>
+                    <button v-if="multiple" @click="selectAll" type="button" :class="getHtmlClass('select.items.actions.selectAll')">{{ trans('ivue.fields.select.actions.selectAll') }}</button>
+                    <button type="button" @click="deSelect" :class="getHtmlClass('select.items.actions.deSelectAll')">{{ trans('ivue.fields.select.actions.deselect') }}{{ multiple ? ' ' + trans('ivue.fields.select.actions.all') : ''}}</button>
                 </div>
             </li>
             <li :class="getHtmlClass('select.item')" v-for="(item, index) in itemsByFiltered" :data-key="index" :data-value="item.value"
@@ -45,11 +45,11 @@
             value: [String, Number, Object, Array],
             placeholder: {
                 type: String,
-                default: 'Please Select...'
+                default: 'ivue.fields.select.placeholder'
             },
             placeholderSelected: {
                 type: String,
-                default: 'Selected'
+                default: 'ivue.fields.select.placeholderSelected'
             },
             desc: [String, Number, Object, Array],
             storeNamespace: {

@@ -1,0 +1,18 @@
+/*!
+ * Author: Amir Hossein Jahani | iAmir.net
+ * Last modified: 7/28/20, 12:17 PM
+ * Copyright (c) 2021. Powered by iamir.net
+ */
+
+.i-radio {
+    padding-left: 25px;
+    .title{
+        margin-left: 5px;
+    }
+    .checkmark {
+        left: 0;
+        &:after {
+            left: 6px;
+        }
+    }
+}

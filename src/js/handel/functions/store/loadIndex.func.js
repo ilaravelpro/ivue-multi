@@ -55,6 +55,9 @@ const LoadIndexData = {
             getSlots(name) {
                 return this.slots && this.slots[name] ? this.slots[name] : false;
             },
+            getTrans(key) {
+                return this.trans(key);
+            },
         }
     },
     watch() {

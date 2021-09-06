@@ -41,7 +41,7 @@
             value: [String, Number, Object, Array],
             placeholder: {
                 type: String,
-                default: 'Please Type...'
+                default: 'ivue.fields.autocomplete.placeholder'
             },
             desc: [String, Number, Object, Array],
             storeNamespace: {

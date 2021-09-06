@@ -1,0 +1,41 @@
+/*!
+ * Author: Amir Hossein Jahani | iAmir.net
+ * Last modified: 8/8/20, 1:27 PM
+ * Copyright (c) 2021. Powered by iamir.net
+ */
+
+.i-file {
+    border: 1px dashed $color-primary;
+    border-radius: 5px;
+    color: $color-primary;
+    label {
+        .btn-upload {
+            &.multiple {
+                display: flex;
+            }
+            /*&:hover {
+                color: #ffffff;
+                background-color: $color-primary;
+            }*/
+        }
+    }
+    .items {
+        .item {
+            position: relative;
+            display: inline-block;
+            border-radius: 0.42rem;
+            background-repeat: no-repeat;
+            background-size: cover;
+            .btn-cancel {
+                border-radius: 50%;
+                position: absolute;
+                bottom: -9px;
+                z-index: 1;
+                &:hover {
+                    color: $color-white;
+                    background-color: $color-primary !important;
+                }
+            }
+        }
+    }
+}

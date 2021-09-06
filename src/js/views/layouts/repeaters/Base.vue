@@ -23,9 +23,9 @@
                     <template v-if="typeof(body) === 'function'">
                         <template v-for="comp in body({}, -1, getContext)">
                             <div v-if="comp.component === 'i-form-fields'" :class="comp.attrs.class">
-                                <div v-for="child in comp.attrs.items" :class="String(getHtmlClass('group.head.child') + (child.attrs.class ? ' ' + child.attrs.class : '')).trim()">{{ child.title || child.attrs.placeholder }}</div>
+                                <div v-for="child in comp.attrs.items" :class="String(getHtmlClass('group.head.child') + (child.attrs.class ? ' ' + child.attrs.class : '')).trim()">{{ getTrans(child.title || child.attrs.placeholder) }}</div>
                             </div>
-                            <div v-else :class="String(getHtmlClass('group.head.child') + (comp.attrs.class ? ' ' + comp.attrs.class : '')).trim()">{{ comp.title || comp.attrs.placeholder }}</div>
+                            <div v-else :class="String(getHtmlClass('group.head.child') + (comp.attrs.class ? ' ' + comp.attrs.class : '')).trim()">{{ getTrans(comp.title || comp.attrs.placeholder) }}</div>
                         </template>
                     </template>
                 </div>
@@ -41,7 +41,7 @@
                             <a @click="removeRow(index)"
                                :class="getHtmlClass('group.body.del.self')">
                                 <i :class="getHtmlClass('group.body.del.icon')"></i>
-                                Delete
+                                {{ getTrans('ivue.repeaters.base.actions.delete') }}
                             </a>
                         </div>
                     </div>
@@ -52,7 +52,7 @@
             <div :class="getHtmlClass('add.item')">
                 <a @click="addRow"
                    :class="getHtmlClass('add.link')">
-                    <i :class="getHtmlClass('add.icon')"></i> Add
+                    <i :class="getHtmlClass('add.icon')"></i> {{ getTrans(addTitle) }}
                 </a>
             </div>
         </div>
@@ -77,7 +77,7 @@
             },
             addTitle: {
                 type: String,
-                default: ""
+                default: "ivue.repeaters.base.actions.add"
             },
             prefixTitle: {
                 type: String,

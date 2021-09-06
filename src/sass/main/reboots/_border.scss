@@ -1,0 +1,66 @@
+/*!
+ * Author: Amir Hossein Jahani | iAmir.net
+ * Last modified: 9/5/20, 10:18 PM
+ * Copyright (c) 2021. Powered by iamir.net
+ */
+
+//==========================================
+//border
+//==========================================
+@mixin i-borders($space) {
+    .border#{$space}-left-0 {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    .border#{$space}-right-0 {
+        border-top-right-radius: 0!important;
+        border-bottom-right-radius: 0!important;
+    }
+
+    .border#{$space}-none {
+        border: none;
+    }
+
+    .border#{$space}-style-dashed {
+        border-style: dashed;
+    }
+
+    .border#{$space}-style-solid {
+        border-style: solid;
+    }
+
+    .border#{$space}-style-top-solid {
+        border-top-style: solid;
+    }
+
+    .border#{$space}-style-left-solid {
+        border-left-style: solid;
+    }
+
+    .border#{$space}-bottom-solid {
+        border-bottom-style: solid;
+    }
+
+    .border#{$space}-bottom-style-solid {
+        border-bottom-style: solid;
+    }
+}
+
+@include i-borders('');
+
+@include media-breakpoint-down(sm)  {
+    @include i-borders('-sm');
+}
+
+@include media-breakpoint-up(sm)  {
+    @include i-borders('-md');
+}
+
+@include media-breakpoint-up(lg)  {
+    @include i-borders('-lg');
+}
+
+@include media-breakpoint-up(xl) {
+    @include i-borders('-xl');
+}

@@ -1,0 +1,12 @@
+/*!
+ * Author: Amir Hossein Jahani | iAmir.net
+ * Last modified: 9/5/20, 9:09 PM
+ * Copyright (c) 2021. Powered by iamir.net
+ */
+
+.i-scroll {
+    height: 20rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+    @include custom-scroll-bar();
+}

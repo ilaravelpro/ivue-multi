@@ -1,0 +1,37 @@
+/*!
+ * Author: Amir Hossein Jahani | iAmir.net
+ * Last modified: 8/7/20, 11:53 AM
+ * Copyright (c) 2021. Powered by iamir.net
+ */
+
+.i-form-wizard {
+    .steps {
+        ul {
+            li {
+                margin-right: 10px;
+            }
+        }
+    }
+
+    .actions {
+        div {
+            a {
+                padding-right: 20px;
+                &:before {
+                    content: '\f007';
+                    left: 23px;
+                }
+            }
+
+            &:first-child {
+                a {
+                    padding-right: 40px;
+                    &:before {
+                        content: '\f006';
+                        right: 15px;
+                    }
+                }
+            }
+        }
+    }
+}

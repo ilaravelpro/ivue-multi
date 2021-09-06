@@ -1,0 +1,28 @@
+/*!
+ * Author: Amir Hossein Jahani | iAmir.net
+ * Last modified: 11/9/20, 5:23 PM
+ * Copyright (c) 2021. Powered by iamir.net
+ */
+
+//
+// Bootstrap Datetimepicker
+//
+
+
+// Base
+.datetimepicker, .datepicker {
+    left: auto;
+    tbody {
+        tr>td {
+            &.day {
+                &.today {
+                    &:before {
+                        border-width: 0 0 7px 7px;
+                        right: 4px;
+                    }
+                }
+            }
+        }
+    }
+
+}

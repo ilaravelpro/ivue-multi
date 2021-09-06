@@ -7,12 +7,12 @@
 <template>
     <div>
         <div v-for="(item, index) in filteredAndSorted" :key="index">
-            <label :class="getHtmlClass('checkbox.self')">{{ item.text || item.title }}
+            <label :class="getHtmlClass('checkbox.self')">{{ trans(item.text || item.title) }}
                 <input type="checkbox" @change="checking(item,null ,item.kids)"
                        :checked="checked(item.value|| item.id)" :value="item.value|| item.id">
                 <span :class="getHtmlClass('checkbox.mark')"></span>
             </label>
-            <label v-for="(child, cindex) in item.kids" :class="getHtmlClass('checkbox.child.self')">{{ child.text || child.title }}
+            <label v-for="(child, cindex) in item.kids" :class="getHtmlClass('checkbox.child.self')">{{ trans(child.text || child.title) }}
                 <input type="checkbox" @change="checking(item, child ,item.kids)" :checked="checked(child.value|| child.id)"
                        :value="child.value|| child.id">
                 <span :class="getHtmlClass('checkbox.child.mark')"></span>
@@ -23,6 +23,8 @@
 
 
 <script>
+    import GlobalField from "../../../handel/functions/field/global.func";
+
     export default {
         name: 'i-checkbox-multi',
         index: {
@@ -39,6 +41,7 @@
             },
         },
         computed: {
+            ...GlobalField.computed(),
             filteredAndSorted() {
                 function compare(a, b) {
                     if (a.text < b.text) return -1;
@@ -59,6 +62,7 @@
             }
         },
         methods: {
+            ...GlobalField.methods(),
             checking(item, child = null, kids = null) {
                 var $item = this.selected.findIndex(function(sub) {
                     return sub.id === item.id;

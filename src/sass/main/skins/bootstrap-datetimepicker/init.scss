@@ -1,0 +1,180 @@
+/*!
+ * Author: Amir Hossein Jahani | iAmir.net
+ * Last modified: 11/9/20, 5:23 PM
+ * Copyright (c) 2021. Powered by iamir.net
+ */
+
+//
+// Bootstrap Datetimepicker
+//
+
+
+// Base
+.datetimepicker, .datepicker {
+    width: 265px;
+    padding: 10px;
+    @include border-radius($border-radius);
+    div {
+        text-align: center;
+    }
+    &.datetimepicker-orient-top {
+        margin-top: 8px;
+    }
+
+    table {
+        width: 100%;
+    }
+
+    td,
+    th {
+        font-size: 1rem;
+        width: 33px;
+        height: 33px;
+        font-weight: normal;
+        cursor: pointer;
+        @include border-radius($border-radius);
+    }
+
+    thead {
+        th {
+            i {
+                font-size: 1.2rem;
+            }
+
+            &.prev,
+            &.switch,
+            &.next {
+                color: $i-material-color-black-primary;
+                font-weight: 500;
+                display: table-cell;
+
+                .glyphicon {
+                    color: $i-material-color-black-primary;
+                }
+
+                &:hover {
+                    background: $i-material-color-grey-100 !important;
+                }
+            }
+
+            &.dow {
+                font-weight: 500;
+                color: $i-material-color-black-primary;
+            }
+
+            &.next {
+                > span {
+                    &:before {
+                        font-family: 'Font Awesome 5 Pro';
+                        content: '\f054';
+                        font-size: 0.7rem;
+                    }
+                }
+            }
+
+            &.prev {
+                >span {
+                    &:before {
+                        font-family: 'Font Awesome 5 Pro';
+                        content: '\f053';
+                        font-size: 0.7rem;
+                    }
+                }
+            }
+        }
+    }
+
+    tbody {
+        tr>td {
+            span {
+                color: $i-material-color-black-primary;
+                font-weight: 400;
+            }
+
+            &.day {
+                color: $i-material-color-black-primary;
+
+                &:hover {
+                    background: $i-material-color-grey-100;
+                }
+
+                &.old {
+                    color: $i-material-color-black-primary;
+                }
+
+                &.new {
+                    color: $i-material-color-black-divider;
+                }
+
+                &.selected,
+                &.active {
+                    background: $primary;
+                    color: $white;
+                }
+
+                &.today {
+                    position: relative;
+                    background: rgba($primary, 0.12) !important;
+                    color: $primary !important;
+
+                    &:before {
+                        content: '';
+                        display: inline-block;
+                        border: solid transparent;
+                        border-bottom-color: #ffffff;
+                        border-top-color: $gray-200;
+                        position: absolute;
+                        bottom: 4px;
+                    }
+                }
+
+                &.range {
+                    background: $i-material-color-grey-100;
+                }
+            }
+
+            span.year,
+            span.hour,
+            span.minute,
+            span.month {
+                color: $i-material-color-black-primary;
+
+                &.focused,
+                &:hover {
+                    background: $i-material-color-grey-100;
+                }
+
+                &.active:hover,
+                &.active {
+                    background: $primary;
+                    color: $white;
+                }
+            }
+        }
+    }
+
+    tfoot {
+        tr>th {
+            &.today,
+            &.clear {
+                @include border-radius($border-radius);
+
+                font-weight: 500;
+
+                &:hover {
+                    background-color: $i-material-color-grey-100;
+                }
+            }
+        }
+    }
+
+    &.datetimepicker-inline, .datepicker-inline {
+        border: 1px solid $i-material-color-grey-100;
+    }
+}
+
+.input-daterange {
+    .input-group-addon {
+        min-width: 44px;
+    }
+}
