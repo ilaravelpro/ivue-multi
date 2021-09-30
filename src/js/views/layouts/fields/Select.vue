@@ -11,6 +11,7 @@
         :store-namespace="storeNamespace"
         :field-index="fieldIndex"
         :options="options"
+        :transType="transType"
         :css="css"
     >
         <template slot="body" ref="select">
@@ -49,6 +50,10 @@
             storeNamespace: {
                 type: [String, Object],
                 default: 'DataSingle'
+            },
+            transType: {
+                type: [String, Object],
+                default: 'current'
             },
             fieldIndex: [String, Object, Function],
             search: Boolean,

@@ -46,7 +46,15 @@ const TranslateLocalFA = {
                 }
             }
         },
-        forms: {},
+        forms: {
+            wizard: {
+                actions: {
+                    backward: 'بازگشت',
+                    forward: 'ادامه',
+                    submit: 'ثبت',
+                }
+            }
+        },
         pages: {
             create: {
                 errors: {

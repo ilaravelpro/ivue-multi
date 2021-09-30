@@ -5,7 +5,6 @@
  */
 
 import "ol/ol.css";
-import "../../../sass/skins/ol/init.scss";
 import "ol-layerswitcher/src/ol-layerswitcher.css";
 
 import Map from "ol/Map";

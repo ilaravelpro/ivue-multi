@@ -13,6 +13,7 @@
         :options="options"
         :icon="icon"
         :css="css"
+        :transType="transType"
         :value="value"
         :slots="slots"
         v-on:update:focusin="focusin = $event"
@@ -49,6 +50,10 @@
             storeNamespace: {
                 type: [String, Object],
                 default: 'DataSingle'
+            },
+            transType: {
+                type: [String, Object],
+                default: 'current'
             },
             fieldIndex: [String, Object, Function],
             icon: Object,

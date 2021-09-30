@@ -8,6 +8,7 @@ import StoreDataSingleState from "./single/state.func";
 import iData from "../../../libs/iData.lib";
 import Notify from "../../../plugins/notify.plugin";
 import vueDeepSet from "vue-set-value";
+import TranslateService from "../../../services/system/translate.service";
 
 const StoreDataSingle = {
     handelErrors(errors = null, status = true, system = null) {
@@ -58,6 +59,7 @@ const StoreDataSingle = {
             functions: {},
             configs: {},
             timeout: 0,
+            useLocal: false,
             fetched: false
         }
     },
@@ -135,7 +137,8 @@ const StoreDataSingle = {
         fetchDataBy({commit, state, dispatch}, {url, resource, params, parent, func}) {
             commit('setLoading', true)
             return new Promise((resolve, reject) => {
-                ApiService.get(url, params)
+                params = params || {};
+                ApiService.get(url, params,{}, false, {useLocal: state.useLocal})
                     .then(response => {
                         commit('setStateMain', {key: resource, value: response.handel.data})
                         if (parent && response.handel.parent) commit('setStateMain', {

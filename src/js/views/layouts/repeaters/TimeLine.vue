@@ -12,7 +12,7 @@
             <div :class="getHtmlClass('add.item')">
                 <a @click="addRow"
                    :class="getHtmlClass('add.link')">
-                    <i :class="getHtmlClass('add.icon')"></i> {{ trans(addTitle) }}
+                    <i :class="getHtmlClass('add.icon')"></i> {{ trans(addTitle, transType) }}
                 </a>
             </div>
         </div>
@@ -24,14 +24,14 @@
                     <span v-else :class="getHtmlClass('contents.head.title')">{{ trans(prefixTitle) }} {{ getValue(getIndex('get')+'.'+index+'.'+itemName) && getValue(getIndex('get')+'.'+index+'.'+itemName) !== "undefined" ? getValue(getIndex('get')+'.'+index+'.'+itemName) : index+1 }}</span>
                     <a @click="removeRow(index)"  v-if="getOption('delBtn') !== false" :class="getHtmlClass('contents.head.del.link')">
                         <i :class="getHtmlClass('contents.head.del.icon')"></i>
-                        {{ trans('ivue.repeaters.timeline.actions.delete') }}
+                        {{ trans('ivue.repeaters.timeline.actions.delete', transType) }}
                     </a>
                 </div>
                 <div :class="getHtmlClass('contents.body.self')">
                     <div v-if="getErrorStatus(getIndex('error') + '.' . index)" :class="`${getHtmlClass('contents.body.alert')}-${getErrorStatus(getIndex('error') + '.' . index) === 'valid' ? 'success' : 'danger'}`" role="alert">{{ getError(getIndex('error') + '.' . index+ '.text') }}</div>
                     <template v-if="typeof(body) === 'function'" >
                         <template v-for="item in body(row, index, getContext)">
-                            <component :is="item.component" v-bind="item.attrs" :storeNamespace="storeNamespace"/>
+                            <component :is="item.component" v-bind="item.attrs" :transType="item.attrs.transType || transType" :storeNamespace="storeNamespace"/>
                         </template>
                     </template>
                     <slot v-else name="body" v-bind:row="row" v-bind:index="index"></slot>
@@ -79,6 +79,10 @@
             storeNamespace: {
                 type: [String, Object],
                 default: 'DataSingle'
+            },
+            transType: {
+                type: [String, Object],
+                default: 'current'
             },
             fieldIndex: [String, Object],
             options: {

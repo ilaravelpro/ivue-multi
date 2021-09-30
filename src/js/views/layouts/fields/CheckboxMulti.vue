@@ -7,12 +7,12 @@
 <template>
     <div>
         <div v-for="(item, index) in filteredAndSorted" :key="index">
-            <label :class="getHtmlClass('checkbox.self')">{{ trans(item.text || item.title) }}
+            <label :class="getHtmlClass('checkbox.self')">{{ trans(item.text || item.title, transType) }}
                 <input type="checkbox" @change="checking(item,null ,item.kids)"
                        :checked="checked(item.value|| item.id)" :value="item.value|| item.id">
                 <span :class="getHtmlClass('checkbox.mark')"></span>
             </label>
-            <label v-for="(child, cindex) in item.kids" :class="getHtmlClass('checkbox.child.self')">{{ trans(child.text || child.title) }}
+            <label v-for="(child, cindex) in item.kids" :class="getHtmlClass('checkbox.child.self')">{{ trans(child.text || child.title, transType) }}
                 <input type="checkbox" @change="checking(item, child ,item.kids)" :checked="checked(child.value|| child.id)"
                        :value="child.value|| child.id">
                 <span :class="getHtmlClass('checkbox.child.mark')"></span>
@@ -34,6 +34,10 @@
         props: {
             items: [Object, Array],
             selected: [Object, Array],
+            transType: {
+                type: [String, Object],
+                default: 'current'
+            },
             search_attr: String,
             search: {
                 type: String,

@@ -12,6 +12,7 @@
         :options="options"
         :icon="icon"
         :css="css"
+        :transType="transType"
     >
         <slot slot="label-append" name="label-append"/>
         <slot slot="label-prepend" name="label-prepend"/>
@@ -20,7 +21,7 @@
         <template slot="body">
             <template v-for="item in fields">
                 <component :is="item.component" v-bind="item.attrs" :storeNamespace="storeNamespace">
-                    <template v-if="item.text">{{ trans(item.text) }}</template>
+                    <template v-if="item.text">{{ trans(item.text, transType) }}</template>
                 </component>
             </template>
         </template>
@@ -45,6 +46,10 @@
             storeNamespace: {
                 type: [String, Object],
                 default: 'DataSingle'
+            },
+            transType: {
+                type: [String, Object],
+                default: 'current'
             },
             fieldIndex: [String, Object, Function],
             icon: Object,

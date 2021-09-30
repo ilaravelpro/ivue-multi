@@ -159,8 +159,10 @@ const LoadSingleData = {
             getSlots(name) {
                 return this.slots && this.slots[name] ? this.slots[name] : false;
             },
-            getTrans(key) {
-                return this.trans(key);
+            getTrans(...args) {
+                if (!args[1] && this.transType)
+                    args[1] = this.transType;
+                return this.trans(...args);
             },
             submit() {
                 return new Promise((resolve, reject) => {

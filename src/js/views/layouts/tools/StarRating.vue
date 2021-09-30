@@ -27,6 +27,10 @@
             html: 'star-rating',
         },
         props: {
+            transType: {
+                type: [String, Object],
+                default: 'current'
+            },
             dynamic: {
                 type: Boolean,
                 default: true

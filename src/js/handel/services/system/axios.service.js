@@ -7,6 +7,7 @@
 import Axios from "axios";
 import iRequest from "../../libs/iRequest.lib";
 import iPath from "../../libs/iPath.lib";
+import TranslateService from "./translate.service";
 const instance = Axios.create();
 instance.interceptors.request.use(config => {
     return config
@@ -16,12 +17,33 @@ instance.interceptors.response.use(response => {
 })
 const AxiosService = {
     requests: {},
+    useLocal: true,
+
     setBaseURL(url) {
         instance.defaults.baseURL = url;
     },
 
     setAuthorization(token) {
         instance.defaults.headers.common["Authorization"] = token;
+    },
+
+    renderLocal(options) {
+        if (['get'].indexOf(options.method) !== -1) {
+            if (typeof(options.params.local) === 'undefined' || options.params.local !== false){
+                if (!options.params.local) options.params.local = 'current';
+                iPath.set(options.params,'local',
+                    ['all', 'current'].indexOf(options.params.local) !== -1 ? TranslateService.getLang(options.params.local) : options.params.local);
+            }else if(options.params.local === false)
+                iPath.del(options.params, 'local');
+        }
+        return options;
+    },
+
+    cancelAll() {
+        $.each(this.requests, function (i, request) {
+            if(typeof(request.cancel) !== 'undefined')
+                request.cancel()
+        })
     },
 
     query(options, notify = false) {
@@ -34,6 +56,8 @@ const AxiosService = {
             iPath.set(this.requests, options.url, cancelTokenSource)
         }
         iPath.del(options, 'useCancelToken');
+        if (this.useLocal && options.useLocal !== false)
+            options = this.renderLocal(options)
 
         return new Promise((resolve, reject) => {
             try {

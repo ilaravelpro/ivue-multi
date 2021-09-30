@@ -7,7 +7,7 @@
 <template>
     <label
         :class="getHtmlClass('label')" data-toggle="tooltip" data-placement="top" :title="label">
-        <i-base-checkbox v-bind="$props" @change="$emit('change', $event )"></i-base-checkbox>
+        <i-base-checkbox :transType="transType" v-bind="$props" @change="$emit('change', $event )"></i-base-checkbox>
         <span :class="classForCheckmark"></span>
     </label>
 </template>
@@ -34,6 +34,10 @@
             storeNamespace: {
                 type: [String, Object],
                 default: 'DataSingle'
+            },
+            transType: {
+                type: [String, Object],
+                default: 'current'
             },
             fieldIndex: [String, Object, Function],
             slots: Object,

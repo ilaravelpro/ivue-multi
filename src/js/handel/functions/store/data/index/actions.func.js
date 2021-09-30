@@ -8,7 +8,7 @@ const StoreDataIndexActions = {
     fetchData({commit, state, dispatch}, page = 1) {
         commit('setLoading', true)
         return new Promise((resolve, reject) => {
-            ApiService.get(state.url ? state.url : state.resource, {page:page, ...state.query})
+            ApiService.get(state.url ? state.url : state.resource, {page:page, ...state.query}, {}, false, {useLocal: false})
                 .then(response => {
                     if (page > 1){
                         commit('setState', ['all', [...state.all, ...response.handel.data]])

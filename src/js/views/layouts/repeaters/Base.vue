@@ -23,9 +23,9 @@
                     <template v-if="typeof(body) === 'function'">
                         <template v-for="comp in body({}, -1, getContext)">
                             <div v-if="comp.component === 'i-form-fields'" :class="comp.attrs.class">
-                                <div v-for="child in comp.attrs.items" :class="String(getHtmlClass('group.head.child') + (child.attrs.class ? ' ' + child.attrs.class : '')).trim()">{{ getTrans(child.title || child.attrs.placeholder) }}</div>
+                                <div v-for="child in comp.attrs.items" :class="String(getHtmlClass('group.head.child') + (child.attrs.class ? ' ' + child.attrs.class : '')).trim()">{{ getTrans(child.title || child.attrs.placeholder, transType) }}</div>
                             </div>
-                            <div v-else :class="String(getHtmlClass('group.head.child') + (comp.attrs.class ? ' ' + comp.attrs.class : '')).trim()">{{ getTrans(comp.title || comp.attrs.placeholder) }}</div>
+                            <div v-else :class="String(getHtmlClass('group.head.child') + (comp.attrs.class ? ' ' + comp.attrs.class : '')).trim()">{{ getTrans(comp.title || comp.attrs.placeholder, transType) }}</div>
                         </template>
                     </template>
                 </div>
@@ -33,7 +33,7 @@
                     <div :class="getHtmlClass('group.body.self')">
                         <template v-if="typeof(body) === 'function'">
                             <template v-for="comp in body(item, index, getContext)">
-                                <component :is="comp.component" v-bind="comp.attrs" :storeNamespace="storeNamespace"/>
+                                <component :is="comp.component" :transType="comp.attrs.transType || transType" v-bind="comp.attrs" :storeNamespace="storeNamespace"/>
                             </template>
                         </template>
                         <slot v-else name="body" v-bind:item="item" v-bind:index="index"></slot>
@@ -41,7 +41,7 @@
                             <a @click="removeRow(index)"
                                :class="getHtmlClass('group.body.del.self')">
                                 <i :class="getHtmlClass('group.body.del.icon')"></i>
-                                {{ getTrans('ivue.repeaters.base.actions.delete') }}
+                                {{ getTrans('ivue.repeaters.base.actions.delete', transType) }}
                             </a>
                         </div>
                     </div>
@@ -52,7 +52,7 @@
             <div :class="getHtmlClass('add.item')">
                 <a @click="addRow"
                    :class="getHtmlClass('add.link')">
-                    <i :class="getHtmlClass('add.icon')"></i> {{ getTrans(addTitle) }}
+                    <i :class="getHtmlClass('add.icon')"></i> {{ getTrans(addTitle, transType) }}
                 </a>
             </div>
         </div>
@@ -99,6 +99,10 @@
             storeNamespace: {
                 type: [String, Object],
                 default: 'DataSingle'
+            },
+            transType: {
+                type: [String, Object],
+                default: 'current'
             },
             fieldIndex: [String, Object],
             options: {

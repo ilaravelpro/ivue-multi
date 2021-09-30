@@ -16,7 +16,7 @@
                     </template>
                     <div :class="getHtmlClass('label.btn.group')" v-else>
                         <div :class="getHtmlClass('label.btn.icon')"></div>
-                        <div :class="getHtmlClass('label.btn.title')">{{ trans(btnTitle) }}</div>
+                        <div :class="getHtmlClass('label.btn.title')">{{ trans(btnTitle, transType) }}</div>
                     </div>
                 </div>
                 <slot v-else name="action" v-bind:value="model" v-bind:url="url" v-bind:multiple="multiple"></slot>
@@ -58,6 +58,10 @@
             storeNamespace: {
                 type: [String, Object],
                 default: 'DataSingle'
+            },
+            transType: {
+                type: [String, Object],
+                default: 'current'
             },
             fieldIndex: [String, Object, Function],
             icon: Object,

@@ -15,7 +15,7 @@ const TranslateService = {
     },
     data() {
         return {
-            local: window.dataTranslateLocal || TranslateLocal
+            local: array_replace_recursive(TranslateLocal, window.dataTranslateLocal || {})
         }
     },
     setLang(lang = 'en', type = 'all') {

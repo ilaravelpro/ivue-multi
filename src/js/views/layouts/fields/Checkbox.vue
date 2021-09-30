@@ -11,6 +11,7 @@
         :store-namespace="storeNamespace"
         :field-index="fieldIndex"
         :options="options"
+        :transType="transType"
         :css="css"
         :value="value"
         :slots="slots"
@@ -44,6 +45,10 @@
             storeNamespace: {
                 type: [String, Object],
                 default: 'DataSingle'
+            },
+            transType: {
+                type: [String, Object],
+                default: 'current'
             },
             fieldIndex: [String, Object, Function],
             slots: Object,

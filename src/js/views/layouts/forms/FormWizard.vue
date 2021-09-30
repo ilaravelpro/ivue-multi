@@ -23,20 +23,20 @@
                 <div v-for="(tab, index) in getTabs" class="tab-pane fade show" :class="_class_content(index)"
                      :id="_id(tab.name)" role="tabpanel" :aria-labelledby="`${_id(tab.name)}_tab`">
                     <template v-if="tab.items" v-for="item in tab.items">
-                        <component :is="item.component" v-bind="item.attrs" :storeNamespace="item.attrs.storeNamespace || storeNamespace"/>
+                        <component :is="item.component" v-bind="item.attrs" :transType="item.attrs.transType || transType" :storeNamespace="item.attrs.storeNamespace || storeNamespace"/>
                     </template>
                 </div>
             </div>
         </div>
         <div :class="getHtmlClass('actions.self')">
             <div :class="current === 0? 'd-none' : ''">
-                <a @click="current--">Backward</a>
+                <a @click="current--">{{ trans('ivue.forms.wizard.actions.backward', transType) }}</a>
             </div>
             <div :class="current > Object.keys(getTabs).length - 2? 'd-none' : ''">
-                <a @click="current++">Forward</a>
+                <a @click="current++">{{ trans('ivue.forms.wizard.actions.forward', transType) }}</a>
             </div>
             <div :class="current < Object.keys(getTabs).length - 1? 'd-none' : ''" @click="submit()">
-                <a>Submit</a>
+                <a>{{ trans('ivue.forms.wizard.actions.submit', transType) }}</a>
             </div>
         </div>
     </div>
@@ -65,6 +65,10 @@
             storeNamespace: {
                 type: String,
                 default: 'DataSingle'
+            },
+            transType: {
+                type: [String, Object],
+                default: 'current'
             },
         },
         data() {

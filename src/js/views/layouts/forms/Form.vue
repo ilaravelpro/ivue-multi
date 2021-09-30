@@ -5,7 +5,7 @@
   -->
 
 <template>
-    <i-form-fields :items="getItems" :storeNamespace="storeNamespace" :externalSubmit="externalSubmit" />
+    <i-form-fields :items="getItems" :transType="transType" :storeNamespace="storeNamespace" :externalSubmit="externalSubmit" />
 </template>
 
 <script>
@@ -28,7 +28,11 @@
             storeNamespace: {
                 type: String,
                 default: 'DataSingle'
-            }
+            },
+            transType: {
+                type: [String, Object],
+                default: 'current'
+            },
         },
         computed: {
             ...FormGlobal.computed(),

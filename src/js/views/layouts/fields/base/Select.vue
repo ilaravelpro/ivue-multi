@@ -15,8 +15,8 @@
             </li>
             <li v-if="actions" :class="getHtmlClass('select.items.actions.self')">
                 <div :class="getHtmlClass('select.items.actions.group')">
-                    <button v-if="multiple" @click="selectAll" type="button" :class="getHtmlClass('select.items.actions.selectAll')">{{ trans('ivue.fields.select.actions.selectAll') }}</button>
-                    <button type="button" @click="deSelect" :class="getHtmlClass('select.items.actions.deSelectAll')">{{ trans('ivue.fields.select.actions.deselect') }}{{ multiple ? ' ' + trans('ivue.fields.select.actions.all') : ''}}</button>
+                    <button v-if="multiple" @click="selectAll" type="button" :class="getHtmlClass('select.items.actions.selectAll')">{{ trans('ivue.fields.select.actions.selectAll', transType) }}</button>
+                    <button type="button" @click="deSelect" :class="getHtmlClass('select.items.actions.deSelectAll')">{{ trans('ivue.fields.select.actions.deselect', transType) }}{{ multiple ? ' ' + trans('ivue.fields.select.actions.all', transType) : ''}}</button>
                 </div>
             </li>
             <li :class="getHtmlClass('select.item')" v-for="(item, index) in itemsByFiltered" :data-key="index" :data-value="item.value"
@@ -55,6 +55,10 @@
             storeNamespace: {
                 type: [String, Object],
                 default: 'DataSingle'
+            },
+            transType: {
+                type: [String, Object],
+                default: 'current'
             },
             fieldIndex: [String, Object, Function],
             search: Boolean,

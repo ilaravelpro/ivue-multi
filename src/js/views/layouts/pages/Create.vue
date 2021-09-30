@@ -7,7 +7,7 @@
 <template>
     <div>
         <div v-if="errorAll.errors && errorAll.errors.length" :class="getHtmlClass('alert.self')" role="alert">
-            <h4 :class="getHtmlClass('alert.head')">{{ trans('ivue.pages.create.errors.fix') }}</h4>
+            <h4 :class="getHtmlClass('alert.head')">{{ trans('ivue.pages.create.errors.fix', transType) }}</h4>
             <ul>
                 <li v-for="(error, index) in errorAll.errors">{{ error }}</li>
             </ul>
@@ -23,11 +23,11 @@
                     <div :class="getHtmlClass('contents.rows.card.body.self')">
                         <loading v-if="row.loading !== false" :status="!loading"/>
                         <slot v-if="$scopedSlots[`row.${row.name}.body`]" :name="`row.${row.name}.body`" v-bind:row="row" v-bind:namespace="storeNamespace"></slot>
-                        <i-form v-else ref="form" :class="getHtmlClass('contents.rows.card.body.form')" :resource="resource" :url="url" :type-form="typeForm" :name="multiple ? row.name : null" :store-namespace="storeNamespace"></i-form>
+                        <i-form v-else ref="form" :class="getHtmlClass('contents.rows.card.body.form')" :resource="resource" :url="url" :type-form="typeForm" :transType="row.transType || transType" :name="multiple ? row.name : null" :store-namespace="storeNamespace"></i-form>
                     </div>
                     <div v-if="row.btn !== false" :class="getHtmlClass('contents.rows.card.foot.self')">
                         <slot v-if="$scopedSlots[`row.${row.name}.footer`]" :name="`row.${row.name}.footer`" v-bind:row="row" v-bind:submit="submit" v-bind:namespace="storeNamespace"></slot>
-                        <button v-else type="submit" :class="getHtmlClass('contents.rows.card.foot.btn')" @click="submit">{{ trans('ivue.pages.create.actions.submit') }}</button>
+                        <button v-else type="submit" :class="getHtmlClass('contents.rows.card.foot.btn')" @click="submit">{{ getTrans('ivue.pages.create.actions.submit', transType) }}</button>
                     </div>
                 </div>
             </div>
@@ -48,6 +48,11 @@
             storeNamespace: {
                 type: String,
                 default: 'DataSingle'
+            },
+            externalSubmit: Function,
+            transType: {
+                type: [String, Object],
+                default: 'current'
             },
             rows: {
                 type: [Object, Array],

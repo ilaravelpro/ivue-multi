@@ -5,10 +5,10 @@
   -->
 
 <template>
-    <textarea v-if="type === 'textarea'" ref="input" :placeholder="placeholder" v-model="model"
+    <textarea v-if="type === 'textarea'" ref="input" :placeholder="trans(placeholder, transType)" v-model="model"
               :class="classForTextArea" @focusin="focusin"
               @focusout="focusout" :id="getIndex('datepicker') ? getIndex('datepicker') + '_input' : ''"></textarea>
-    <input v-else ref="input" v-mask="getMask" :readonly="getOption('readonly')" :type="type" :placeholder="placeholder"
+    <input v-else ref="input" v-mask="getMask" :readonly="getOption('readonly')" :type="type" :placeholder="trans(placeholder, transType)"
            :value="model" :class="classForField"
            @focusin="focusin" @focusout="focusout" :id="getIndex('datepicker') ? getIndex('datepicker') + '_input' : false">
 </template>
@@ -34,6 +34,10 @@
             storeNamespace: {
                 type: [String, Object],
                 default: 'DataSingle'
+            },
+            transType: {
+                type: [String, Object],
+                default: 'current'
             },
             fieldIndex: [String, Object, Function],
             icon: Object,

@@ -45,6 +45,10 @@
                 type: [String, Object],
                 default: 'DataSingle'
             },
+            transType: {
+                type: [String, Object],
+                default: 'current'
+            },
             fieldIndex: [String, Object, Function],
             slots: Object,
             options: {

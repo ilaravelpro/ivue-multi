@@ -47,7 +47,15 @@ const TranslateLocalEN = {
                 }
             }
         },
-        forms: {},
+        forms: {
+            wizard: {
+                actions: {
+                    backward: 'Backward',
+                    forward: 'Forward',
+                    submit: 'Submit',
+                }
+            }
+        },
         pages: {
             create: {
                 errors: {

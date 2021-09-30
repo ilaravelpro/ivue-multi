@@ -11,6 +11,7 @@
         :store-namespace="storeNamespace"
         :field-index="fieldIndex"
         :options="options"
+        :transType="transType"
         :css="css"
         v-on:update:focusin="focusin = $event"
         v-on:update:focusout="focusout = $event"
@@ -47,6 +48,10 @@
             storeNamespace: {
                 type: [String, Object],
                 default: 'DataSingle'
+            },
+            transType: {
+                type: [String, Object],
+                default: 'current'
             },
             fieldIndex: [String, Object, Function],
             diff: [String, Number, Object, Array],

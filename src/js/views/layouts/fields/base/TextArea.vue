@@ -5,7 +5,7 @@
   -->
 
 <template>
-    <textarea ref="input" :placeholder="placeholder" v-model="model" :class="styleForTextArea" @focusin="focusin"
+    <textarea ref="input" :placeholder="trans(placeholder, transType)" v-model="model" :class="styleForTextArea" @focusin="focusin"
               @focusout="focusout"></textarea>
 </template>
 
@@ -32,6 +32,10 @@
             storeNamespace: {
                 type: [String, Object],
                 default: 'DataSingle'
+            },
+            transType: {
+                type: [String, Object],
+                default: 'current'
             },
             fieldIndex: [String, Object, Function],
             icon: Object,

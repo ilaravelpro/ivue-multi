@@ -12,7 +12,7 @@
             <div :class="getHtmlClass('add.item')">
                 <a @click="addRow"
                    :class="getHtmlClass('add.link')">
-                    <i :class="getHtmlClass('add.icon')"></i> {{ trans(addTitle) }}
+                    <i :class="getHtmlClass('add.icon')"></i> {{ trans(addTitle, transType) }}
                 </a>
             </div>
         </div>
@@ -23,11 +23,11 @@
                          aria-expanded="false" :aria-controls="'collapse_' + id + '_' +index">
                         <div v-if="typeof(header) === 'function'" :class="getHtmlClass('contents.card.head.title.text')" v-html="header(row, index, prefixTitle)"></div>
                         <slot v-else-if="$scopedSlots['row.title']" name="row.title" v-bind:row="row" v-bind:index="index" v-bind:prefix="prefixTitle"></slot>
-                        <span v-else :class="getHtmlClass('contents.card.head.title.text')">{{ trans(prefixTitle) }} {{ getValue(getIndex('get')+'.'+index+'.'+itemName) && getValue(getIndex('get')+'.'+index+'.'+itemName) !== "undefined" ? getValue(getIndex('get')+'.'+index+'.'+itemName) : index+1 }}</span>
+                        <span v-else :class="getHtmlClass('contents.card.head.title.text')">{{ trans(prefixTitle, transType) }} {{ getValue(getIndex('get')+'.'+index+'.'+itemName) && getValue(getIndex('get')+'.'+index+'.'+itemName) !== "undefined" ? getValue(getIndex('get')+'.'+index+'.'+itemName) : index+1 }}</span>
                         <a @click="removeRow(index)" v-if="getOption('delBtn') !== false"
                            :class="getHtmlClass('contents.card.head.del.self')">
                             <i :class="getHtmlClass('contents.card.head.del.icon')"></i>
-                            {{ trans('ivue.repeaters.accordion.actions.delete') }}
+                            {{ trans('ivue.repeaters.accordion.actions.delete', transType) }}
                         </a>
                     </div>
                 </div>
@@ -37,7 +37,7 @@
                         <div v-if="getErrorStatus(getIndex('error') + '.' . index)" :class="`${getHtmlClass('contents.card.body.alert')}-${getErrorStatus(getIndex('error') + '.' . index) === 'valid' ? 'success' : 'danger'}`" role="alert">{{ getError(getIndex('error') + '.' . index+ '.text') }}</div>
                         <template v-if="typeof(body) === 'function'" >
                             <template v-for="item in body(row, index, getContext)">
-                                <component :is="item.component" v-bind="item.attrs" :storeNamespace="storeNamespace"/>
+                                <component :is="item.component" v-bind="item.attrs" :transType="item.attrs.transType || transType" :storeNamespace="storeNamespace"/>
                             </template>
                         </template>
                         <slot v-else name="body" v-bind:row="row" v-bind:index="index"></slot>
@@ -86,6 +86,10 @@
             storeNamespace: {
                 type: [String, Object],
                 default: 'DataSingle'
+            },
+            transType: {
+                type: [String, Object],
+                default: 'current'
             },
             fieldIndex: [String, Object],
             options: {

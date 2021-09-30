@@ -68,7 +68,7 @@ const SelectField = {
         getSelects() {
             var $this = this;
             if (this.multiple) {
-                return this._value && typeof (this._value) === 'object' && Object.keys(this._value).length ? Object.keys(this._value).length + " " + this.trans(this.placeholderSelected) : this.trans(this.placeholder);
+                return this._value && typeof (this._value) === 'object' && Object.keys(this._value).length ? Object.keys(this._value).length + " " + this.trans(this.placeholderSelected, this.transType) : this.trans(this.placeholder, this.transType);
             } else {
                 var $select = this._value;
                 if (this.getType === 'single') {
@@ -76,7 +76,7 @@ const SelectField = {
                         if (v.value === $select) $select = v;
                     })
                 }
-                return this._value && typeof ($select) !== 'undefined' && $select.text ? $select.text : this.trans(this.placeholder);
+                return this._value && typeof ($select) !== 'undefined' && $select.text ? $select.text : this.trans(this.placeholder, this.transType);
             }
         },
         deSelect() {
@@ -242,7 +242,7 @@ const SelectField = {
                     if (!$this.useModel) {
                         $this.serverQuery.q = $this.model
                     }*/
-                    ApiService.get($this.getUrl, {...$this.serverQuery, ...$this.getQuery}, {}, false, {useCancelToken: false}).then(response => {
+                    ApiService.get($this.getUrl, {local: $this.transType,...$this.serverQuery, ...$this.getQuery}, {}, false, {useCancelToken: false}).then(response => {
                         if ($this.serverQuery.page > 1) $this.serverItems.push(...response.handel.data);
                         else $this.serverItems = response.handel.data;
                         $this.serverQuery.pages = response.handel.meta.last_page;

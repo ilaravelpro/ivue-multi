@@ -10,7 +10,7 @@
         <div :class="getHtmlClass('dialog.self')" role="document">
             <div :class="getHtmlClass('dialog.content.self')">
                 <div :class="getHtmlClass('dialog.content.header.self')">
-                    <h5 :class="getHtmlClass('dialog.content.header.title')" :id="`${$attrs.id}Label`" v-text="$attrs.title"></h5>
+                    <h5 :class="getHtmlClass('dialog.content.header.title')" :id="`${$attrs.id}Label`" v-text="trans($attrs.title, 'all')"></h5>
                     <button type="button" :class="getHtmlClass('dialog.content.header.close')" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -40,7 +40,11 @@
             storeNamespace: {
                 type: String,
                 default: 'DataSingle'
-            }
+            },
+            transType: {
+                type: [String, Object],
+                default: 'current'
+            },
         },
         computed: {
             ...ToolsGlobal.computed(),

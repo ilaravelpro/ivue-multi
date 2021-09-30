@@ -8,7 +8,7 @@
     <div :class="getHtmlClass('section')" >
         <h5 v-if="title" :class="getHtmlClass('title')" v-html="getTitle"></h5>
         <template v-for="item in getItems">
-            <component :is="item.component" v-bind="item.attrs" v-if="item && typeof(item.if) === 'function'? item.if(getContext) : item" :storeNamespace="item.attrs.storeNamespace || storeNamespace" >
+            <component :is="item.component" v-bind="item.attrs" :transType="item.attrs.transType || transType" v-if="item && typeof(item.if) === 'function'? item.if(getContext) : item" :storeNamespace="item.attrs.storeNamespace || storeNamespace" >
                 <template v-if="item.text">{{ item.text }}</template>
             </component>
         </template>
@@ -33,7 +33,11 @@
             storeNamespace: {
                 type: String,
                 default: 'DataSingle'
-            }
+            },
+            transType: {
+                type: [String, Object],
+                default: 'current'
+            },
         },
         computed: {
             ...FormGlobal.computed(),

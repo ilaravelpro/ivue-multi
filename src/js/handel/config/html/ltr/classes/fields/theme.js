@@ -3,11 +3,11 @@ const ConfigHtmlLTRClassesFieldsTheme = {
         label: 'col-form-label',
         'input-group-prepend-icon': 'input-group-text',
         'input-group-append-icon': 'input-group-text',
+        'input-group': 'input-group',
     },
     variable: {
         label: 'my-auto',
         noLabel: 'p-0 my-2',
-        'input-group': 'input-group',
         'input-group-prepend': 'input-group-prepend',
         'input-group-append': 'input-group-append',
         'input-group-prepend-icon': 'bg-white border-right-0',

@@ -21,13 +21,13 @@
                                             :items="filterData.type.items"
                                             v-model="filterData.value"/>
                         </div>
-                        <i-input  v-if="filterData.type && filterData.type.type === 'text'" v-model="filterData.value"  placeholder="ivue.datatable.list.filter.search" :options="{icon: {append: {class: getHtmlClass('filter.form.fields.value.icon')}}}" />
+                        <i-input  v-if="filterData.type && filterData.type.type === 'text'" v-model="filterData.value" :transType="transType" placeholder="ivue.datatable.list.filter.search" :options="{icon: {append: {class: getHtmlClass('filter.form.fields.value.icon')}}}" />
                     </div>
                 </div>
             </div>
             <div :class="getHtmlClassOther('filter.form.actions.self', {'index.filter.form.actions.isChild': child})">
-                <button v-if="server" :class="getHtmlClass('filter.form.actions.search')" @click="paginateServer()">{{ trans("ivue.datatable.list.filter.buttons.search") }}</button>
-                <button :class="getHtmlClass('filter.form.actions.reset')" @click="resetQuery()">{{ trans("ivue.datatable.list.filter.buttons.reset") }}</button>
+                <button v-if="server" :class="getHtmlClass('filter.form.actions.search')" @click="paginateServer()">{{ trans("ivue.datatable.list.filter.buttons.search", transType) }}</button>
+                <button :class="getHtmlClass('filter.form.actions.reset')" @click="resetQuery()">{{ trans("ivue.datatable.list.filter.buttons.reset", transType) }}</button>
             </div>
         </div>
 
@@ -50,9 +50,9 @@
                         <th v-for="column in columns" :key="column.name" @click="sortBy(column.name)"
                             :class="sortKey === column.name ? (sortOrders[column.name] > 0 ? 'sorting_asc' : 'sorting_desc') : 'sorting'"
                             :style="`width: ${100 / (columns.length + 2)}%; cursor:pointer;`">
-                            {{ trans(column.label) }}
+                            {{ trans(column.label, transType) }}
                         </th>
-                        <th v-if="action" :style="`width: ${100 / (columns.length + 2)}%; cursor:pointer;`">{{ trans("ivue.datatable.list.actions.title") }}</th>
+                        <th v-if="action" :style="`width: ${100 / (columns.length + 2)}%; cursor:pointer;`">{{ trans("ivue.datatable.list.actions.title", transType) }}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -86,7 +86,7 @@
                 </div>
                 <div :class="getHtmlClass('container.list.pagination.end.self')">
                     <div :class="getHtmlClass('container.list.pagination.end.text')">
-                        {{pagination.from}} - {{pagination.to}} {{ trans('ivue.datatable.list.pagination.of') }} {{pagination.total}}
+                        {{pagination.from}} - {{pagination.to}} {{ trans('ivue.datatable.list.pagination.of', transType) }} {{pagination.total}}
                     </div>
                 </div>
             </div>
@@ -116,6 +116,10 @@
             storeNamespace: {
                 type: String,
                 default: 'DataIndex'
+            },
+            transType: {
+                type: [String, Object],
+                default: 'current'
             },
             edit: {
                 type: Boolean,
